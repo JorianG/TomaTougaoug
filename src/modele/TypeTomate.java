@@ -1,4 +1,4 @@
-package modèleEtudiantSAE;
+package modele;
 
 public enum TypeTomate {
 	
