@@ -17,6 +17,8 @@ import java.awt.Rectangle;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
+import java.awt.Frame;
+
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,7 @@ public class Panier extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
+	private JTable table;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -50,6 +53,12 @@ public class Panier extends JFrame {
 	public void fillTable() {
 		System.out.println("bibou uwu");
 		this.modeleTable.setRowCount(1);
+		// TODO recupérer les séléctions
+		
+	}
+	
+	public void viderTable() {
+		this.modeleTable.setRowCount(1);
 	}
 	
 	/**
@@ -71,25 +80,12 @@ public class Panier extends JFrame {
 		modeleTable = new DefaultTableModel(
 				new Object[] {"Image", "Produit", "Quantit\u00E9", "Total"}, 0);
 		
-		JTable table = new JTable(modeleTable);
+		this.table = new JTable(modeleTable);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Image", "Produit", "Quantit\u00E9", "Total"},
-				{"0", "0", "1213", "0"},
-				{null, "0", "0", "0"},
-			},
-			new String[] {
-				"Image", "Produit", "Quantit\u00E9", "Total"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		table.setModel(modeleTable);
+		modeleTable.addRow(
+                new Object[] { "Image", "Produit",
+                        "Quantité", "Total" });
 		table.setEnabled(false);
 		
 		contentPane.add(table, BorderLayout.CENTER);
@@ -115,12 +111,18 @@ public class Panier extends JFrame {
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				fillTable();
+				viderTable();
 			}
 		});
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_4 = new JButton("Continuer");
+		btnNewButton_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ihm.Acceuil.main(null);
+			}
+		});
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -157,6 +159,8 @@ public class Panier extends JFrame {
 		textField_2.setEditable(false);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
+		
+		modeleTable.addRow(new Object[] {"1","2","3", "4"});
 	}
 
 }
