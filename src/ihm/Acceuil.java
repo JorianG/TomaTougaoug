@@ -14,10 +14,15 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
 
 public class Acceuil extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -49,37 +54,69 @@ public class Acceuil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		JPanel footer = new JPanel();
+		contentPane.add(footer, BorderLayout.SOUTH);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		footer.add(lblNewLabel);
+		
+		JComboBox comboBox = new JComboBox();
+		footer.add(comboBox);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		footer.add(lblNewLabel_1);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		footer.add(comboBox_1);
+		
+		JButton btnNewButton = new JButton("p");
+		footer.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		footer.add(btnNewButton_1);
+		
+		JPanel center = new JPanel();
+		contentPane.add(center, BorderLayout.CENTER);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		center.add(table);
+		
 		JPanel header = new JPanel();
-		header.setMaximumSize(new Dimension(32767, 50));
-		contentPane.add(header, BorderLayout.WEST);
+		contentPane.add(header, BorderLayout.NORTH);
 		
 		JLabel titre = new JLabel("Commandez vos tomates");
-		titre.setForeground(new Color(0, 255, 0));
-		titre.setFont(new Font("Lucida Calligraphy", Font.PLAIN, 25));
-		titre.setHorizontalAlignment(SwingConstants.LEFT);
 		titre.setIcon(new ImageIcon(Acceuil.class.getResource("/images/TomaTougaoug.png")));
+		titre.setHorizontalAlignment(SwingConstants.LEFT);
+		titre.setForeground(Color.GREEN);
+		titre.setFont(new Font("Lucida Calligraphy", Font.PLAIN, 23));
 		header.add(titre);
 		
 		JPanel panier = new JPanel();
-		panier.setBackground(new Color(255, 128, 64));
 		panier.setSize(new Dimension(80, 40));
 		panier.setForeground(new Color(255, 128, 64));
+		panier.setBackground(new Color(255, 128, 64));
 		header.add(panier);
 		
 		JLabel txtPanier = new JLabel("Panier");
-		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtPanier.setIcon(new ImageIcon(Acceuil.class.getResource("/images/panier.png")));
+		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panier.add(txtPanier);
 		
 		JLabel eurPanier = new JLabel("0.00€");
 		eurPanier.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panier.add(eurPanier);
-		
-		JPanel footer = new JPanel();
-		contentPane.add(footer, BorderLayout.SOUTH);
-		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
 
 	}
 
