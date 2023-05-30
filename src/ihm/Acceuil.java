@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,12 +19,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.GridLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.Rectangle;
+import java.awt.Insets;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.BoxLayout;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Acceuil extends JFrame {
-
+	
 	private JPanel contentPane;
+	private DefaultTableModel modeleTable;
 	private JTable table;
-
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +54,14 @@ public class Acceuil extends JFrame {
 			}
 		});
 	}
-
+	
+	public void emptyTable(int n) {
+		this.modeleTable.setRowCount(1);
+	}
+	
+	public void remplirTable() {
+		
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -56,42 +78,34 @@ public class Acceuil extends JFrame {
 		
 		JPanel footer = new JPanel();
 		contentPane.add(footer, BorderLayout.SOUTH);
+		footer.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		footer.add(lblNewLabel);
+		JPanel Left = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) Left.getLayout();
+		footer.add(Left, BorderLayout.CENTER);
+		
+		JLabel tomate = new JLabel("Catégorie : ");
+		Left.add(tomate);
 		
 		JComboBox comboBox = new JComboBox();
-		footer.add(comboBox);
+		Left.add(comboBox);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		footer.add(lblNewLabel_1);
+		JLabel Couleur = new JLabel("Couleur :");
+		Couleur.setHorizontalAlignment(SwingConstants.RIGHT);
+		Left.add(Couleur);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		footer.add(comboBox_1);
+		Left.add(comboBox_1);
+		
+		JPanel Right = new JPanel();
+		footer.add(Right, BorderLayout.EAST);
 		
 		JButton btnNewButton = new JButton("p");
-		footer.add(btnNewButton);
+		Right.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		footer.add(btnNewButton_1);
-		
-		JPanel center = new JPanel();
-		contentPane.add(center, BorderLayout.CENTER);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
-		center.add(table);
+		JButton Info = new JButton("Plus d'info");
+		Info.setMargin(new Insets(7, 22, 7, 22));
+		Right.add(Info);
 		
 		JPanel header = new JPanel();
 		contentPane.add(header, BorderLayout.NORTH);
@@ -104,6 +118,12 @@ public class Acceuil extends JFrame {
 		header.add(titre);
 		
 		JPanel panier = new JPanel();
+		panier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ihm.Panier.main(null);;
+			}
+		});
 		panier.setSize(new Dimension(80, 40));
 		panier.setForeground(new Color(255, 128, 64));
 		panier.setBackground(new Color(255, 128, 64));
@@ -117,7 +137,22 @@ public class Acceuil extends JFrame {
 		JLabel eurPanier = new JLabel("0.00€");
 		eurPanier.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panier.add(eurPanier);
-
+		
+		
+		modeleTable = new DefaultTableModel(
+                new Object[] {"NOM", "PRIX", "IMAGE"}, 0);
+		
+		
+		this.table = new JTable(modeleTable);
+        table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null,null));
+        table.setModel(modeleTable);
+        modeleTable.addRow(
+                new Object[] {"NOM", "PRIX", "IMAGE"});
+        table.setEnabled(false);
+		contentPane.add(table, BorderLayout.CENTER);
+		
+		
+		
 	}
 
 }
