@@ -17,6 +17,9 @@ import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import modele.Tomate;
+
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -33,8 +36,11 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class Acceuil extends JFrame {
+	
+	
 	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
@@ -43,6 +49,7 @@ public class Acceuil extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,8 +58,12 @@ public class Acceuil extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}	
 		});
+		//main
+		
+		
+		
 	}
 	
 	public void emptyTable(int n) {
