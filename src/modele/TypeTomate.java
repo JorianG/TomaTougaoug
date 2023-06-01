@@ -4,19 +4,19 @@ public enum TypeTomate {
 	
 	TOMATES_CERISES("Cerises & Cocktails (16)"), TOMATES("Autres Tomates (47)");
 	
-	private final String dénomination;
+	private final String denomination;
 
-	private TypeTomate(String dénomination) {
-		this.dénomination  = dénomination;
+	private TypeTomate(String denomination) {
+		this.denomination  = denomination;
 	}
 
-	public String getDénomination() {
-		return this.dénomination;
+	public String getDenomination() {
+		return this.denomination;
 	}
 	
-	public static TypeTomate getTypeTomate(String dénomination) {
+	public static TypeTomate getTypeTomate(String denomination) {
 		for (TypeTomate t : TypeTomate.values()) {
-			if (t.getDénomination().equals(dénomination)) {
+			if (t.getDenomination().equals(denomination)) {
 				return t;
 			}
 		}

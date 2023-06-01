@@ -3,19 +3,19 @@ package modele;
 public enum Couleur {
 
 	BLEU ("Bleu"), VERT("Vert"), ROUGE("Rouge"), ORANGE("Orange"), JAUNE("Jaune"), NOIR("Noir"), MULTICOLORE("Multicolore");
-	private final String dénomination;
+	private final String denomination;
 
-	private Couleur(String dénomination) {
-		this.dénomination  = dénomination;
+	private Couleur(String denomination) {
+		this.denomination  = denomination;
 	}
 
-	public String getDénomination() {
-		return this.dénomination;
+	public String getDenomination() {
+		return this.denomination;
 	}
 	
-	public static Couleur getCouleur(String dénomination) {
+	public static Couleur getCouleur(String denomination) {
 		for (Couleur c : Couleur.values()) {
-			if (c.getDénomination().equals(dénomination)) {
+			if (c.getDenomination().equals(denomination)) {
 				return c;
 			}
 		}

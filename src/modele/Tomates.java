@@ -3,14 +3,24 @@ package modele;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author lugag
+ *
+ */
 public class Tomates {
 
+	/**
+	 * 
+	 */
 	public static final String CONSEILS_DE_CULTURE_TITRE = 
 						"Conseils de culture\r\n"
 						+ "Semis : mars-avril\r\n"
 						+ "Repiquage : après les gelées\r\n"
 						+ "Récolte : juillet à septembre, voire octobre";
 	
+	/**
+	 * 
+	 */
 	public static final String CONSEILS_DE_CULTURE = new String(
 					"Les tomates sont frileuses !\r\n"
 					+ "\r\n"
@@ -32,19 +42,35 @@ public class Tomates {
 					+ "\r\n"
 					+ "Plantez du basilic entre vos pieds de tomates, ils s’entraident l’un l’autre…");
 
+	/**
+	 * 
+	 */
 	private List<Tomate> lesTomates;
+	
+	/**
+	 * 
+	 */
 	public Tomates() {
 		this.lesTomates = new LinkedList<Tomate>();
 	}
 
+	/**
+	 * @param tomates
+	 */
 	public void addTomates(List<Tomate> tomates) {
 		this.lesTomates.addAll(tomates);
 	}
 
+	/**
+	 * @return
+	 */
 	public List<Tomate> getLesTomates() {
 		return lesTomates;
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public String toString() {
 		StringBuffer res = new StringBuffer("Liste des graines de tomates : \n\n");
@@ -54,10 +80,19 @@ public class Tomates {
 		return res.toString();
 	}
 
+	/**
+	 * @param typeTomate
+	 * @return
+	 */
 	public List<Tomate> tomatesDeType(TypeTomate typeTomate) {
 		return tomatesDeTypeAvecListe(typeTomate, this.lesTomates);
 	}
 
+	/**
+	 * @param typeTomate
+	 * @param lesTomates
+	 * @return
+	 */
 	private List<Tomate> tomatesDeTypeAvecListe(TypeTomate typeTomate, List<Tomate> lesTomates) {
 		List<Tomate> tomatesDeType = new LinkedList<Tomate>();
 		for (Tomate t: lesTomates) {
@@ -68,10 +103,24 @@ public class Tomates {
 		return tomatesDeType;
 	}
 
+	/**
+	 * @param couleur
+	 * @return
+	 */
 	public List<Tomate> tomatesDeCouleur(Couleur couleur) {
 		return tomatesDeCouleurAvecListe(couleur, this.lesTomates);
 	}
 
+	/**
+	 * @param couleur
+	 * @param lesTomates
+	 * @return
+	 */
+	/**
+	 * @param couleur
+	 * @param lesTomates
+	 * @return
+	 */
 	private List<Tomate> tomatesDeCouleurAvecListe(Couleur couleur, List<Tomate> lesTomates) { 
 		List<Tomate> tomatesDeCouleur = new LinkedList<Tomate>();
 		for (Tomate t: lesTomates) {
@@ -82,20 +131,30 @@ public class Tomates {
 		return tomatesDeCouleur;
 	}
 	
+	/**
+	 * @param typeTomate
+	 * @param couleur
+	 * @return
+	 */
 	public List<Tomate> tomatesDetypeDeCouleur(TypeTomate typeTomate, Couleur couleur) {
 		List<Tomate> tomatesDeTypeDeCouleur = new LinkedList<Tomate>();
-		for (Tomate t: this.lesTomates) {
-			if (t.getCouleur() == couleur && t.getTypeGraine() == typeTomate) {
+		for (Tomate t: lesTomates) {
+			if (t.getTypeGraine() == typeTomate && t.getCouleur() == couleur) {
 				tomatesDeTypeDeCouleur.add(t);
 			}
 		}
 		return tomatesDeTypeDeCouleur;
 	}
 	
+	/**
+	 * @param designation
+	 * @return
+	 */
 	public Tomate getTomate(String designation) {
 		for (Tomate graine : this.lesTomates) {
-			if (graine.getDésignation().equals(designation))
+			if (graine.getDesignation().equals(designation)) {
 				return graine;
+			}
 		}
 		return null;
 	}

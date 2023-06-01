@@ -9,36 +9,36 @@ public class ArticlesTest {
 
 	@Test
 	public void testTomates() {
-		assertEquals(47, GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES).size());
-		assertEquals(GenerationArticles.GenerationTomates(), GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES));
+		assertEquals(47, GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES).size());
+		assertEquals(GenerationArticles.GenerationTomates(), GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES));
 	}
 	
 	@Test
 	public void testTomatesAppariement() {
-		List<Tomate> tomates = GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES);
+		List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES);
 		for (Tomate tomate : tomates) {
-			assertEquals(4, tomate.getTomatesApparentées().size());
+			assertEquals(4, tomate.getTomatesApparentees().size());
 		}
 	}
 	
 	@Test
 	public void testTomatesCerises() {
-		assertEquals(16, GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES).size());
-		assertEquals(GenerationArticles.GenerationTomatesCerises(), GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES));
+		assertEquals(16, GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES).size());
+		assertEquals(GenerationArticles.GenerationTomatesCerises(), GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES));
 	}
 	
 	@Test
 	public void testTomatesCerisesAppariement() {
-		List<Tomate> tomates = GenerationArticles.générationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES);
+		List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES);
 		for (Tomate tomate : tomates) {
-			assertEquals(4, tomate.getTomatesApparentées().size());
+			assertEquals(4, tomate.getTomatesApparentees().size());
 		}
 	}
 	
 	@Test 
 	public void testTomatesEtTomatesCerisesParCouleur() {
 		for (int i = 0; i < Couleur.values().length; i++) {
-			List<Tomate> tomates = GenerationArticles.générationDeBaseDesTomates().tomatesDeCouleur(Couleur.values()[i]);
+			List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDeCouleur(Couleur.values()[i]);
 			assertTrue(tomates.size() > 0);
 			for (Tomate tomate : tomates) {
 				assertEquals(Couleur.values()[i], tomate.getCouleur());
@@ -49,7 +49,7 @@ public class ArticlesTest {
 	@Test 
 	public void testTomatesParCouleur() {
 		for (int i = 0; i < Couleur.values().length; i++) {
-			List<Tomate> tomates = GenerationArticles.générationDeBaseDesTomates().tomatesDetypeDeCouleur(TypeTomate.TOMATES, Couleur.values()[i]);
+			List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDetypeDeCouleur(TypeTomate.TOMATES, Couleur.values()[i]);
 			assertTrue(tomates.size() > 0);
 			for (Tomate tomate : tomates) {
 				assertEquals(TypeTomate.TOMATES, tomate.getTypeGraine());
@@ -61,7 +61,7 @@ public class ArticlesTest {
 	@Test 
 	public void testTomatesCerisesParCouleur() {
 		for (int i = 0; i < Couleur.values().length; i++) {
-			List<Tomate> tomates = GenerationArticles.générationDeBaseDesTomates().tomatesDetypeDeCouleur(TypeTomate.TOMATES_CERISES, Couleur.values()[i]);
+			List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDetypeDeCouleur(TypeTomate.TOMATES_CERISES, Couleur.values()[i]);
 			if (!(Couleur.values()[i] == Couleur.MULTICOLORE)  && !(Couleur.values()[i] == Couleur.BLEU)) {
 				assertTrue(tomates.size() > 0);
 				for (Tomate tomate : tomates) {
@@ -73,11 +73,11 @@ public class ArticlesTest {
 	}
 	
 	@Test 
-	public void testGetterTomateParDésignation() {
-		Tomates articles = GenerationArticles.générationDeBaseDesTomates();
+	public void testGetterTomateParDesignation() {
+		Tomates articles = GenerationArticles.generationDeBaseDesTomates();
 		assertNotNull(articles.getTomate("Tomate Brandywine"));
 		assertNull(articles.getTomate("Tomate Brandywine goes to Hollywood"));
-		assertEquals("Tomate Brandywine", articles.getTomate("Tomate Brandywine").getDésignation());
+		assertEquals("Tomate Brandywine", articles.getTomate("Tomate Brandywine").getDesignation());
 	}
 
 }

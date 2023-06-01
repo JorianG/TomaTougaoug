@@ -6,42 +6,42 @@ import java.util.List;
 public class GenerationArticles {
 
 	public static void main(String[] args) {
-		Tomates mesArticles = générationDeBaseDesTomates();
+		Tomates mesArticles = generationDeBaseDesTomates();
 		System.out.println(mesArticles);
 		List<Tomate> tomates = mesArticles.getLesTomates();
 		for(Tomate graine: tomates) {
-			System.out.println(graine.toStringAvecTomatesApparentées());
+			System.out.println(graine.toStringAvecTomatesApparentees());
 		}
 	}
 	
-	public static Tomates générationDeBaseDesTomates() {
+	public static Tomates generationDeBaseDesTomates() {
 		Tomates mesArticles = new Tomates();
 		mesArticles.addTomates(GenerationTomates());
 		mesArticles.addTomates(GenerationTomatesCerises());
-		updateEpuisées(mesArticles);
-		tomatesApparentées(mesArticles);
+		updateEpuisees(mesArticles);
+		tomatesApparentees(mesArticles);
 		return mesArticles;
 	}
 
-	private static void updateEpuisées(Tomates mesArticles) {
+	private static void updateEpuisees(Tomates mesArticles) {
 		mesArticles.getTomate("Tomate Délice du Jardinier").setDisponible(false);
 		mesArticles.getTomate("Tomate Belle Rose").setDisponible(false);
 		mesArticles.getTomate("Tomate Coeur de Boeuf Jaune").setDisponible(false);	
 		mesArticles.getTomate("Tomate Chair de Boeuf « Beefsteak »").setDisponible(false);			
 	}
 	
-	private static void tomatesApparentées(Tomates mesArticles) {
+	private static void tomatesApparentees(Tomates mesArticles) {
 		List<Tomate> tomates = mesArticles.tomatesDeType(TypeTomate.TOMATES);
-		génerationAléatoireTomatesApparentées(tomates);
+		generationAleatoireTomatesApparentees(tomates);
 		List<Tomate> tomatesCerises = mesArticles.tomatesDeType(TypeTomate.TOMATES_CERISES);
-		génerationAléatoireTomatesApparentées(tomatesCerises);
+		generationAleatoireTomatesApparentees(tomatesCerises);
 	}
 
-	private static void génerationAléatoireTomatesApparentées(List<Tomate> tomates) {
+	private static void generationAleatoireTomatesApparentees(List<Tomate> tomates) {
 		for (Tomate graine: tomates) {
-			while (graine.getTomatesApparentées().size() < 4) {
+			while (graine.getTomatesApparentees().size() < 4) {
 				int random = (int) (tomates.size() * Math.random());
-				graine.addTomateApparentée(tomates.get(random));
+				graine.addTomateApparentee(tomates.get(random));
 			}
 		}
 	}
