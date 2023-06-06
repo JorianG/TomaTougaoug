@@ -46,6 +46,8 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.table.TableModel;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Acceuil extends JFrame {
 	
@@ -154,6 +156,11 @@ public class Acceuil extends JFrame {
 		Right.add(btnNewButton);
 		
 		JButton Info = new JButton("Plus d'info");
+		Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ihm.Conseil.main(null);
+			}
+		});
 		Info.setMargin(new Insets(7, 22, 7, 22));
 		Right.add(Info);
 		
