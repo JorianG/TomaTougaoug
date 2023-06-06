@@ -77,7 +77,7 @@ public class ArticlesTest {
 		Tomates articles = GenerationArticles.generationDeBaseDesTomates();
 		assertNotNull(articles.getTomate("Tomate Brandywine"));
 		assertNull(articles.getTomate("Tomate Brandywine goes to Hollywood"));
-		assertEquals("Tomate Brandywine", articles.getTomate("Tomate Brandywine").getDesignation());
+		assertEquals("Tomate Brandywine", articles.getTomate("Tomate Brandywine").getDésignation());
 	}
 
 }
