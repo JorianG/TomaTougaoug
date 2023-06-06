@@ -61,7 +61,7 @@ public class Conseil extends JFrame {
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ihm.Acceuil.main(null);
+				dispose();
 			}
 		});
 		btnValider.setForeground(new Color(0, 128, 0));
