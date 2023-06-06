@@ -31,6 +31,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
+import javax.swing.ScrollPaneConstants;
 
 public class Panier extends JFrame {
 	
@@ -38,10 +41,10 @@ public class Panier extends JFrame {
 	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
-	private JTable table;
 	private JTextField textFieldST;
 	private JTextField textFieldExpe;
 	private JTextField textFieldTotal;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -116,18 +119,11 @@ public class Panier extends JFrame {
 		modeleTable = new DefaultTableModel(
 				new Object[] {"Image", "Produit", "Quantit\u00E9", "Prix/u", "Total"}, 0);
 		
-		this.table = new JTable(modeleTable);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setModel(modeleTable);
-		table.setEnabled(false);
-		
-		contentPane.add(table, BorderLayout.CENTER);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(new Rectangle(0, 0, 0, 100));
-		panel.setBorder(null);
-		contentPane.add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new BorderLayout(0, 0));
+		JPanel south = new JPanel();
+		south.setBounds(new Rectangle(0, 0, 0, 100));
+		south.setBorder(null);
+		contentPane.add(south, BorderLayout.SOUTH);
+		south.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Recacul");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -136,11 +132,11 @@ public class Panier extends JFrame {
 				recalcul();
 			}
 		});
-		panel.add(btnNewButton, BorderLayout.WEST);
+		south.add(btnNewButton, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.add(panel_1, BorderLayout.SOUTH);
+		south.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnNewButton_1 = new JButton("Valider");
@@ -169,7 +165,7 @@ public class Panier extends JFrame {
 		panel_1.add(btnNewButton_4);
 		
 		JPanel panel_2 = new JPanel();
-		panel.add(panel_2, BorderLayout.EAST);
+		south.add(panel_2, BorderLayout.EAST);
 		panel_2.setLayout(new GridLayout(3, 2, 5, 5));
 		
 		JLabel lblNewLabel_1 = new JLabel("Sous-total : ");
@@ -199,6 +195,17 @@ public class Panier extends JFrame {
 		textFieldTotal.setEditable(false);
 		panel_2.add(textFieldTotal);
 		textFieldTotal.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		table.setModel(modeleTable);
+		table.setEnabled(false);
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		scrollPane.setViewportView(table);
 		
 		modeleTable.addRow(new Object[] {1,2,(float) 3, (float) 4, 5});
 		fillTable();
