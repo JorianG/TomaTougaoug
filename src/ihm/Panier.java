@@ -57,6 +57,12 @@ public class Panier extends JFrame {
 		
 	}
 	
+	public void recalcul() {
+		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
+			this.modeleTable.mo
+		}
+	}
+	
 	public void viderTable() {
 		this.modeleTable.setRowCount(1);
 	}
