@@ -59,7 +59,7 @@ public class Panier extends JFrame {
 	
 	public void recalcul() {
 		System.out.println(this.modeleTable.getRowCount());
-		for (int i = 1; i < this.modeleTable.getRowCount(); i++) {
+		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
 			Object[] data = new Object[] {
 					this.modeleTable.getValueAt(i, 0),
 					this.modeleTable.getValueAt(i, 1),
