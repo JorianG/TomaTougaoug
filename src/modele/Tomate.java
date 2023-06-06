@@ -120,6 +120,7 @@ public class Tomate {
 	}
 
 	public void addTomateApparentée(Tomate tomate) {
+		this.tomatesApparentées.add(tomate);
 	}
 
 }

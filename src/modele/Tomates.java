@@ -5,12 +5,18 @@ import java.util.List;
 
 public class Tomates {
 
+	/**
+	 * 
+	 */
 	public static final String CONSEILS_DE_CULTURE_TITRE = 
 						"Conseils de culture\r\n"
 						+ "Semis : mars-avril\r\n"
 						+ "Repiquage : après les gelées\r\n"
 						+ "Récolte : juillet à septembre, voire octobre";
 	
+	/**
+	 * 
+	 */
 	public static final String CONSEILS_DE_CULTURE = new String(
 					"Les tomates sont frileuses !\r\n"
 					+ "\r\n"
@@ -32,7 +38,14 @@ public class Tomates {
 					+ "\r\n"
 					+ "Plantez du basilic entre vos pieds de tomates, ils s’entraident l’un l’autre…");
 
+	/**
+	 * 
+	 */
 	private List<Tomate> lesTomates;
+	
+	/**
+	 * 
+	 */
 	public Tomates() {
 		this.lesTomates = new LinkedList<Tomate>();
 	}
@@ -58,26 +71,48 @@ public class Tomates {
 		return tomatesDeTypeAvecListe(typeTomate, this.lesTomates);
 	}
 
+
 	private List<Tomate> tomatesDeTypeAvecListe(TypeTomate typeTomate, List<Tomate> lesTomates) {
-		return null;
+		List<Tomate> tomatesDeType = new LinkedList<Tomate>();
+		for (Tomate t: lesTomates) {
+			if (t.getTypeGraine() == typeTomate) {
+				tomatesDeType.add(t);
+			}
+		}
+		return tomatesDeType;
 	}
 
 	public List<Tomate> tomatesDeCouleur(Couleur couleur) {
 		return tomatesDeCouleurAvecListe(couleur, this.lesTomates);
 	}
 
+
 	private List<Tomate> tomatesDeCouleurAvecListe(Couleur couleur, List<Tomate> lesTomates) { 
-		return null;
+		List<Tomate> tomatesDeCouleur = new LinkedList<Tomate>();
+		for (Tomate t: lesTomates) {
+			if (t.getCouleur() == couleur) {
+				tomatesDeCouleur.add(t);
+			}
+		}
+		return tomatesDeCouleur;
 	}
 	
 	public List<Tomate> tomatesDetypeDeCouleur(TypeTomate typeTomate, Couleur couleur) {
-		return null;
+		List<Tomate> tomatesDeTypeDeCouleur = new LinkedList<Tomate>();
+		for (Tomate t: lesTomates) {
+			if (t.getTypeGraine() == typeTomate && t.getCouleur() == couleur) {
+				tomatesDeTypeDeCouleur.add(t);
+			}
+		}
+		return tomatesDeTypeDeCouleur;
 	}
 	
+
 	public Tomate getTomate(String designation) {
 		for (Tomate graine : this.lesTomates) {
-			if (graine.getDésignation().equals(designation))
+			if (graine.getDescription().equals(designation)) {
 				return graine;
+			}
 		}
 		return null;
 	}

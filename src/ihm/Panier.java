@@ -20,19 +20,28 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 
 import javax.swing.table.DefaultTableModel;
+
+import modele.Tomate;
+import modele.Tomates;
+import modele.GenerationArticles;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Panier extends JFrame {
-
+	
+	private Tomates test;
+	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textFieldST;
+	private JTextField textFieldExpe;
+	private JTextField textFieldTotal;
 
 	/**
 	 * Launch the application.
@@ -40,8 +49,9 @@ public class Panier extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				Tomates test = GenerationArticles.générationDeBaseDesTomates();
 				try {
-					Panier frame = new Panier();
+					Panier frame = new Panier(test);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,25 +62,33 @@ public class Panier extends JFrame {
 	
 	public void fillTable() {
 		System.out.println("bibou uwu");
-		this.modeleTable.setRowCount(1);
+		this.modeleTable.setRowCount(0);
 		// TODO recupérer les séléctions
-		
+		for (Tomate t: test.getLesTomates()) {
+			this.modeleTable.addRow(new Object[] {t.getNomImage(), t.getDésignation(), 42, t.getPrixTTC(), 42*t.getPrixTTC()});
+		}
 	}
 	
 	public void recalcul() {
 		System.out.println(this.modeleTable.getRowCount());
+		float sum = 0;
 		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
+			float val = (float) this.modeleTable.getValueAt(i, 2) * (float) this.modeleTable.getValueAt(i, 3);
+			sum += val;
 			Object[] data = new Object[] {
 					this.modeleTable.getValueAt(i, 0),
 					this.modeleTable.getValueAt(i, 1),
 					this.modeleTable.getValueAt(i, 2),
 					this.modeleTable.getValueAt(i, 3),
-					(float) this.modeleTable.getValueAt(i, 2) * (float) this.modeleTable.getValueAt(i, 3)
+					val
 			};
 			this.modeleTable.removeRow(i);
 			this.modeleTable.insertRow(i, data);
+			
 		}
-		
+		float total = (float) (sum+4.50);
+		this.textFieldST.setText(""+sum+"€");
+		this.textFieldTotal.setText(""+(total)+"€");
 	}
 	
 	public void viderTable() {
@@ -80,7 +98,9 @@ public class Panier extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Panier() {
+	public Panier(Tomates test) {
+		this.test = test;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
@@ -155,31 +175,34 @@ public class Panier extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Sous-total : ");
 		panel_2.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBorder(null);
-		textField.setEditable(false);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		textFieldST = new JTextField();
+		textFieldST.setBorder(null);
+		textFieldST.setEditable(false);
+		panel_2.add(textFieldST);
+		textFieldST.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Frais expédition :");
 		panel_2.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBorder(null);
-		textField_1.setEditable(false);
-		panel_2.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldExpe = new JTextField();
+		textFieldExpe.setText("4.50€");
+		textFieldExpe.setBorder(null);
+		textFieldExpe.setEditable(false);
+		panel_2.add(textFieldExpe);
+		textFieldExpe.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Total :");
 		panel_2.add(lblNewLabel_3);
 		
-		textField_2 = new JTextField();
-		textField_2.setBorder(null);
-		textField_2.setEditable(false);
-		panel_2.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldTotal = new JTextField();
+		textFieldTotal.setBorder(null);
+		textFieldTotal.setEditable(false);
+		panel_2.add(textFieldTotal);
+		textFieldTotal.setColumns(10);
 		
 		modeleTable.addRow(new Object[] {1,2,(float) 3, (float) 4, 5});
+		fillTable();
+		recalcul();
 	}
 
 }
