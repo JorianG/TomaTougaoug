@@ -1,4 +1,7 @@
 package ihm;
+import modele.Tomates;
+import modele.GenerationArticles;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -23,6 +26,8 @@ import modele.Tomate;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import net.miginfocom.swing.MigLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -37,6 +42,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.table.TableModel;
 
 public class Acceuil extends JFrame {
 	
@@ -44,6 +50,7 @@ public class Acceuil extends JFrame {
 	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
+	private Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
 	private JTable table;
 	/**
 	 * Launch the application.
@@ -66,12 +73,18 @@ public class Acceuil extends JFrame {
 		
 	}
 	
-	public void emptyTable(int n) {
+	public void emptyTable() {
 		this.modeleTable.setRowCount(1);
 	}
 	
-	public void remplirTable() {
-		
+	public void fillTable() {
+		emptyTable();
+		List<Tomate> instBd = bdTomates.getLesTomates();
+		for(int i =0; i < bdTomates.getLesTomates().size(); i++) {
+			ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
+			
+			modeleTable.addRow(new Object[] {instBd.get(i).getDesignation(), instBd.get(i).getPrixTTC(),icon});
+		}
 	}
 	/**
 	 * Create the frame.
@@ -152,17 +165,22 @@ public class Acceuil extends JFrame {
 		
 		modeleTable = new DefaultTableModel(
                 new Object[] {"NOM", "PRIX", "IMAGE"}, 0);
-		
-		
-		this.table = new JTable(modeleTable);
-        table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null,null));
-        table.setModel(modeleTable);
         modeleTable.addRow(
                 new Object[] {"NOM", "PRIX", "IMAGE"});
-        table.setEnabled(false);
-		contentPane.add(table, BorderLayout.CENTER);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
+		table = new JTable();
+		table.setBorder(new EmptyBorder(0, 0, 0, 0));
+		table.setEnabled(false);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		table.setModel(modeleTable);
+		scrollPane.setViewportView(table);
+		
+		fillTable();
 		
 	}
 
