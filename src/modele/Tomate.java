@@ -8,27 +8,27 @@ public class Tomate {
 	
 	private TypeTomate typeGraine;
 	private Couleur couleur;
-	private String designation;
+	private String désignation;
 	private String sousTitre;
 	private String nomImage;
 	private String description;
 	private int nombreDeGraines;
 	private float prixTTC;
 	private boolean disponible;
-	private List<Tomate> tomatesApparentees;
+	private List<Tomate> tomatesApparentées;
 	
-	public Tomate(TypeTomate typeGraine, Couleur couleur, String designation, String sousTitre, String nomImage, String description,
+	public Tomate(TypeTomate typeGraine, Couleur couleur, String désignation, String sousTitre, String nomImage, String description,
 			int nombreDeGraines, float prixTTC) {
 		this.typeGraine = typeGraine;
 		this.couleur = couleur;
-		this.designation = designation;
+		this.désignation = désignation;
 		this.sousTitre = sousTitre;
 		this.nomImage = nomImage;
 		this.description = description;
 		this.nombreDeGraines = nombreDeGraines;
 		this.prixTTC = prixTTC;
 		this.setDisponible(true);
-		this.tomatesApparentees = new LinkedList<Tomate>();
+		this.tomatesApparentées = new LinkedList<Tomate>();
 	}
 
 	public TypeTomate getTypeGraine() {
@@ -39,8 +39,8 @@ public class Tomate {
 		return couleur;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public String getDésignation() {
+		return désignation;
 	}
 
 	public String getNomImage() {
@@ -81,9 +81,9 @@ public class Tomate {
 		if (!this.isDisponible()) {
 			res.append("EPUISE ! ");
 		}
-		res.append(this.getTypeGraine().getDenomination() + ',');
-		res.append(this.getCouleur().getDenomination() + ',');
-		res.append(this.getDesignation() + ',');
+		res.append(this.getTypeGraine().getDénomination() + ',');
+		res.append(this.getCouleur().getDénomination() + ',');
+		res.append(this.getDésignation() + ',');
 		res.append(this.nombreDeGraines + " graines" + ',');
 		res.append(String.valueOf(this.getPrixTTC()) + " €" + ',');
 		res.append("Image : " + this.getNomImage());
@@ -94,11 +94,11 @@ public class Tomate {
 		return this.toString() + '\n' + this.getDescription();
 	}
 	
-	public String toStringAvecTomatesApparentees() {
+	public String toStringAvecTomatesApparentées() {
 		StringBuffer res = new StringBuffer(this.toString());
-		res.append("\n Tomates apparentees : ");
-		for (Tomate graine: this.getTomatesApparentees()) {
-			res.append(graine.getDesignation() + " ");
+		res.append("\n Tomates apparentées : ");
+		for (Tomate graine: this.getTomatesApparentées()) {
+			res.append(graine.getDésignation() + " ");
 		}
 		return res.toString();
 	}
@@ -112,15 +112,15 @@ public class Tomate {
 		if (getClass() != obj.getClass())
 			return false;
 		Tomate other = (Tomate) obj;
-		return Objects.equals(designation, other.designation);
+		return Objects.equals(désignation, other.désignation);
 	}
 	
-	public List<Tomate> getTomatesApparentees() {
-		return tomatesApparentees;
+	public List<Tomate> getTomatesApparentées() {
+		return tomatesApparentées;
 	}
 
-	public void addTomateApparentee(Tomate tomate) {
-		this.tomatesApparentees.add(tomate);
+	public void addTomateApparentée(Tomate tomate) {
+		this.tomatesApparentées.add(tomate);
 	}
 
 }
