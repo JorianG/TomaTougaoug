@@ -58,9 +58,19 @@ public class Panier extends JFrame {
 	}
 	
 	public void recalcul() {
-		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
-			this.modeleTable.mo
+		System.out.println(this.modeleTable.getRowCount());
+		for (int i = 1; i < this.modeleTable.getRowCount(); i++) {
+			Object[] data = new Object[] {
+					this.modeleTable.getValueAt(i, 0),
+					this.modeleTable.getValueAt(i, 1),
+					this.modeleTable.getValueAt(i, 2),
+					this.modeleTable.getValueAt(i, 3),
+					(float) this.modeleTable.getValueAt(i, 2) * (float) this.modeleTable.getValueAt(i, 3)
+			};
+			this.modeleTable.removeRow(i);
+			this.modeleTable.insertRow(i, data);
 		}
+		
 	}
 	
 	public void viderTable() {
@@ -84,14 +94,11 @@ public class Panier extends JFrame {
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
 		modeleTable = new DefaultTableModel(
-				new Object[] {"Image", "Produit", "Quantit\u00E9", "Total"}, 0);
+				new Object[] {"Image", "Produit", "Quantit\u00E9", "Prix/u", "Total"}, 0);
 		
 		this.table = new JTable(modeleTable);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table.setModel(modeleTable);
-		modeleTable.addRow(
-                new Object[] { "Image", "Produit",
-                        "Quantité", "Total" });
 		table.setEnabled(false);
 		
 		contentPane.add(table, BorderLayout.CENTER);
@@ -103,6 +110,12 @@ public class Panier extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Recacul");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				recalcul();
+			}
+		});
 		panel.add(btnNewButton, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();
@@ -166,7 +179,7 @@ public class Panier extends JFrame {
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
-		modeleTable.addRow(new Object[] {"1","2","3", "4"});
+		modeleTable.addRow(new Object[] {1,2,(float) 3, (float) 4, 5});
 	}
 
 }
