@@ -19,6 +19,7 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Tomate;
@@ -34,6 +35,7 @@ import java.awt.FlowLayout;
 import java.awt.Rectangle;
 import java.awt.Insets;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -72,18 +74,42 @@ public class Acceuil extends JFrame {
 		
 		
 	}
-	
+	private class ImageRender extends DefaultTableCellRenderer {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			// TODO Auto-generated method stub
+			String photoName = "/images/Tomates40x40/"+ value.toString()+".jpg";
+			//System.out.println(Acceuil.class.getResource(photoName));
+			//String photoName = "/images/TomaTougaoug.png";
+			JLabel lab = new JLabel();
+			lab.setText("");
+			System.out.println(photoName);
+			lab.setIcon( new ImageIcon(Acceuil.class.getResource(photoName)));
+				
+			
+			return lab;
+		}
+		
+	}
 	public void emptyTable() {
-		this.modeleTable.setRowCount(1);
+		this.modeleTable.setRowCount(0);
 	}
 	
 	public void fillTable() {
 		emptyTable();
 		List<Tomate> instBd = bdTomates.getLesTomates();
 		for(int i =0; i < bdTomates.getLesTomates().size(); i++) {
-			ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
-			
-			modeleTable.addRow(new Object[] {instBd.get(i).getDesignation(), instBd.get(i).getPrixTTC(),icon});
+			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
+			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
+			modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(), instBd.get(i).getPrixTTC(),instBd.get(i).getNomImage() });
+
 		}
 	}
 	/**
@@ -165,8 +191,6 @@ public class Acceuil extends JFrame {
 		
 		modeleTable = new DefaultTableModel(
                 new Object[] {"NOM", "PRIX", "IMAGE"}, 0);
-        modeleTable.addRow(
-                new Object[] {"NOM", "PRIX", "IMAGE"});
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -178,7 +202,12 @@ public class Acceuil extends JFrame {
 		table.setEnabled(false);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		table.setModel(modeleTable);
+		table.getColumnModel().getColumn(2).setCellRenderer(new ImageRender());
+		table.setRowHeight(50);
+
 		scrollPane.setViewportView(table);
+		
+		
 		
 		fillTable();
 		
