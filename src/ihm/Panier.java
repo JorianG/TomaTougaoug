@@ -92,7 +92,7 @@ public class Panier extends JFrame {
 	}
 	
 	public void viderTable() {
-		this.modeleTable.setRowCount(0s);
+		this.modeleTable.setRowCount(0);
 	}
 	
 	/**

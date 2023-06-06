@@ -17,7 +17,7 @@ public class ArticlesTest {
 	public void testTomatesAppariement() {
 		List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES);
 		for (Tomate tomate : tomates) {
-			assertEquals(4, tomate.getTomatesApparentees().size());
+			assertEquals(4, tomate.getTomatesApparentées().size());
 		}
 	}
 	
@@ -31,7 +31,7 @@ public class ArticlesTest {
 	public void testTomatesCerisesAppariement() {
 		List<Tomate> tomates = GenerationArticles.generationDeBaseDesTomates().tomatesDeType(TypeTomate.TOMATES_CERISES);
 		for (Tomate tomate : tomates) {
-			assertEquals(4, tomate.getTomatesApparentees().size());
+			assertEquals(4, tomate.getTomatesApparentées().size());
 		}
 	}
 	
