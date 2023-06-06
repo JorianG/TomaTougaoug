@@ -58,32 +58,32 @@ public class Conseil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnValider = new JButton("Valider");
+		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ihm.Acceuil.main(null);
 			}
 		});
-		btnNewButton.setForeground(new Color(0, 128, 0));
-		btnNewButton.setFont(new Font("Brush Script MT", Font.PLAIN, 25));
-		contentPane.add(btnNewButton, BorderLayout.SOUTH);
+		btnValider.setForeground(new Color(0, 128, 0));
+		btnValider.setFont(new Font("Brush Script MT", Font.PLAIN, 25));
+		contentPane.add(btnValider, BorderLayout.SOUTH);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		JPanel titre = new JPanel();
+		contentPane.add(titre, BorderLayout.CENTER);
+		titre.setLayout(new BorderLayout(0, 0));
 		
 		JTextPane txtpnconseilsDeCulturern = new JTextPane();
 		txtpnconseilsDeCulturern.setEditable(false);
 		txtpnconseilsDeCulturern.setForeground(new Color(0, 128, 0));
 		txtpnconseilsDeCulturern.setFont(new Font("Brush Script MT", Font.PLAIN, 25));
 		txtpnconseilsDeCulturern.setText("Conseils de culture\r\nSemis : mars-avril\r\nRepiquage : après les gelées\r\nRécolte : juillet à septembre, voire octobre");
-		panel.add(txtpnconseilsDeCulturern, BorderLayout.NORTH);
+		titre.add(txtpnconseilsDeCulturern, BorderLayout.NORTH);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setToolTipText("");
-		panel.add(scrollPane);
+		titre.add(scrollPane, BorderLayout.CENTER);
 		
 		JTextPane txtpnA = new JTextPane();
 		txtpnA.setFont(new Font("Tahoma", Font.PLAIN, 16));
