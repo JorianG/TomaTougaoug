@@ -55,6 +55,7 @@ public class Acceuil extends JFrame {
 	private DefaultTableModel modeleTable;
 	private Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
 	private JTable table;
+	public List<Tomate> instBd = bdTomates.getLesTomates();
 	/**
 	 * Launch the application.
 	 */
@@ -103,8 +104,7 @@ public class Acceuil extends JFrame {
 	
 	public void fillTable() {
 		emptyTable();
-		List<Tomate> instBd = bdTomates.getLesTomates();
-		for(int i =0; i < bdTomates.getLesTomates().size(); i++) {
+		for(int i =0; i < instBd.size(); i++) {
 			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
 			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
 			modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
