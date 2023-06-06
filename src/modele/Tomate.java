@@ -81,8 +81,8 @@ public class Tomate {
 		if (!this.isDisponible()) {
 			res.append("EPUISE ! ");
 		}
-		res.append(this.getTypeGraine().getDénomination() + ',');
-		res.append(this.getCouleur().getDénomination() + ',');
+		res.append(this.getTypeGraine().getDenomination() + ',');
+		res.append(this.getCouleur().getDenomination() + ',');
 		res.append(this.getDésignation() + ',');
 		res.append(this.nombreDeGraines + " graines" + ',');
 		res.append(String.valueOf(this.getPrixTTC()) + " €" + ',');

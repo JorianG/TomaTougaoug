@@ -10,7 +10,7 @@ public class GenerationArticles {
 		System.out.println(mesArticles);
 		List<Tomate> tomates = mesArticles.getLesTomates();
 		for(Tomate graine: tomates) {
-			System.out.println(graine.toStringAvecTomatesApparentees());
+			System.out.println(graine.toStringAvecTomatesApparentées());
 		}
 	}
 	
@@ -39,9 +39,9 @@ public class GenerationArticles {
 
 	private static void generationAleatoireTomatesApparentees(List<Tomate> tomates) {
 		for (Tomate graine: tomates) {
-			while (graine.getTomatesApparentees().size() < 4) {
+			while (graine.getTomatesApparentées().size() < 4) {
 				int random = (int) (tomates.size() * Math.random());
-				graine.addTomateApparentee(tomates.get(random));
+				graine.addTomateApparentée(tomates.get(random));
 			}
 		}
 	}
