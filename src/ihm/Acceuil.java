@@ -45,6 +45,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.table.TableModel;
+import javax.swing.ListSelectionModel;
 
 public class Acceuil extends JFrame {
 	
@@ -86,11 +87,9 @@ public class Acceuil extends JFrame {
 				int row, int column) {
 			// TODO Auto-generated method stub
 			String photoName = "/images/Tomates40x40/"+ value.toString()+".jpg";
-			//System.out.println(Acceuil.class.getResource(photoName));
-			//String photoName = "/images/TomaTougaoug.png";
 			JLabel lab = new JLabel();
 			lab.setText("");
-			System.out.println(photoName);
+			//System.out.println(photoName);
 			lab.setIcon( new ImageIcon(Acceuil.class.getResource(photoName)));
 				
 			
@@ -108,8 +107,9 @@ public class Acceuil extends JFrame {
 		for(int i =0; i < bdTomates.getLesTomates().size(); i++) {
 			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
 			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
-			modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(), instBd.get(i).getPrixTTC(),instBd.get(i).getNomImage() });
-
+			modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
+					instBd.get(i).getPrixTTC() + " € pour " + instBd.get(i).getNombreDeGraines() + " graines",
+					instBd.get(i).getNomImage() });
 		}
 	}
 	/**
@@ -193,19 +193,35 @@ public class Acceuil extends JFrame {
                 new Object[] {"NOM", "PRIX", "IMAGE"}, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
+
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable();
+		JTable table = new JTable() {
+	        private static final long serialVersionUID = 1L;
+
+	        public boolean isCellEditable(int row, int column) {                
+	                return false;               
+	        };
+	    };
+		table.setShowHorizontalLines(true);
+		table.setShowGrid(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBorder(new EmptyBorder(0, 0, 0, 0));
-		table.setEnabled(false);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		table.setModel(modeleTable);
 		table.getColumnModel().getColumn(2).setCellRenderer(new ImageRender());
 		table.setRowHeight(50);
-
+		table.setEnabled(true);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(table.getSelectedRow());
+			}
+		});
 		scrollPane.setViewportView(table);
+		
 		
 		
 		
