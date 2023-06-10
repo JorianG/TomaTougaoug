@@ -46,6 +46,10 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.table.TableModel;
 import javax.swing.ListSelectionModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Acceuil extends JFrame {
 	
@@ -56,6 +60,17 @@ public class Acceuil extends JFrame {
 	private Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
 	private JTable table;
 	public List<Tomate> instBd = bdTomates.getLesTomates();
+	private JComboBox comboCat;
+	
+	
+	private class article{
+		public article(Tomate t, int nb) {
+			Tomate tomate = t;
+			int nombre = nb;
+			
+		}
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,14 +117,23 @@ public class Acceuil extends JFrame {
 		this.modeleTable.setRowCount(0);
 	}
 	
+	/**
+	 * Fill the table on the landing pages according to the filters applied
+	 * @param couleur
+	 * @param type
+	 */
 	public void fillTable() {
 		emptyTable();
 		for(int i =0; i < instBd.size(); i++) {
 			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
 			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
-			modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
-					instBd.get(i).getPrixTTC() + " € pour " + instBd.get(i).getNombreDeGraines() + " graines",
-					instBd.get(i).getNomImage() });
+			System.out.println(instBd.get(i).getTypeGraine().getDenomination());
+			if(instBd.get(i).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem())) {
+				modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
+						instBd.get(i).getPrixTTC() + " € pour " + instBd.get(i).getNombreDeGraines() + " graines",
+						instBd.get(i).getNomImage() });
+			}
+			
 		}
 	}
 	/**
@@ -137,15 +161,24 @@ public class Acceuil extends JFrame {
 		JLabel tomate = new JLabel("Catégorie : ");
 		Left.add(tomate);
 		
-		JComboBox comboBox = new JComboBox();
-		Left.add(comboBox);
+		comboCat = new JComboBox<Object>();
+		comboCat.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				fillTable();
+			}
+		});
+		comboCat.setModel(new DefaultComboBoxModel(modele.TypeTomate.getAllTypeTomate()));
+		//comboCat.setModel(new DefaultComboBoxModel(new String[] {modele.TypeTomate.TOMATES.getDenomination(),modele.TypeTomate.TOMATES_CERISES.getDenomination()}));
+		Left.add(comboCat);
+		comboCat.setSelectedIndex(0);
+		System.out.println(comboCat.getSelectedItem());
 		
 		JLabel Couleur = new JLabel("Couleur :");
 		Couleur.setHorizontalAlignment(SwingConstants.RIGHT);
 		Left.add(Couleur);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		Left.add(comboBox_1);
+		JComboBox comboCouleur = new JComboBox();
+		Left.add(comboCouleur);
 		
 		JPanel Right = new JPanel();
 		footer.add(Right, BorderLayout.EAST);
@@ -217,7 +250,8 @@ public class Acceuil extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(table.getSelectedRow());
+				
+				System.out.println(instBd.get(table.getSelectedRow()));
 			}
 		});
 		scrollPane.setViewportView(table);

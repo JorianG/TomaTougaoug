@@ -22,5 +22,15 @@ public enum TypeTomate {
 		}
 		return null;
 	}
+	
+	public static String[] getAllTypeTomate() {
+		String[] tab = new String[TypeTomate.values().length];
+		int i = 0;
+		for (TypeTomate t : TypeTomate.values()) {
+			tab[i] = t.getDenomination();
+			i+=1;
+		}
+		return tab;
+	}
 
 }
