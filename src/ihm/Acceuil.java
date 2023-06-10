@@ -61,6 +61,7 @@ public class Acceuil extends JFrame {
 	private JTable table;
 	public List<Tomate> instBd = bdTomates.getLesTomates();
 	private JComboBox comboCat;
+	private JComboBox comboCouleur;
 	
 	
 	private class article{
@@ -127,8 +128,8 @@ public class Acceuil extends JFrame {
 		for(int i =0; i < instBd.size(); i++) {
 			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
 			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
-			System.out.println(instBd.get(i).getTypeGraine().getDenomination());
-			if(instBd.get(i).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem())) {
+			System.out.println(instBd.get(i).getCouleur().getDenomination());
+			if(instBd.get(i).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem()) && instBd.get(i).getCouleur().getDenomination().equals(comboCouleur.getSelectedItem())) {
 				modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
 						instBd.get(i).getPrixTTC() + " € pour " + instBd.get(i).getNombreDeGraines() + " graines",
 						instBd.get(i).getNomImage() });
@@ -161,6 +162,11 @@ public class Acceuil extends JFrame {
 		JLabel tomate = new JLabel("Catégorie : ");
 		Left.add(tomate);
 		
+		
+		/**
+		 * Combo box pour le choix de la couleur filtree
+		 * ________________________________________________________________________________
+		 */
 		comboCat = new JComboBox<Object>();
 		comboCat.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -171,15 +177,31 @@ public class Acceuil extends JFrame {
 		//comboCat.setModel(new DefaultComboBoxModel(new String[] {modele.TypeTomate.TOMATES.getDenomination(),modele.TypeTomate.TOMATES_CERISES.getDenomination()}));
 		Left.add(comboCat);
 		comboCat.setSelectedIndex(0);
-		System.out.println(comboCat.getSelectedItem());
+		
+		/**
+		 * __________________________________________________________________________________		
+		 */
 		
 		JLabel Couleur = new JLabel("Couleur :");
 		Couleur.setHorizontalAlignment(SwingConstants.RIGHT);
 		Left.add(Couleur);
 		
-		JComboBox comboCouleur = new JComboBox();
+		/**
+		 * Combo box pour le choix de la couleur filtree
+		 * ________________________________________________________________________________
+		 */
+		comboCouleur = new JComboBox();
+		comboCouleur.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				fillTable();
+			}
+		});
+		comboCouleur.setModel(new DefaultComboBoxModel(modele.Couleur.getAllCouleur()));
 		Left.add(comboCouleur);
-		
+		comboCouleur.setSelectedIndex(0);
+		/**
+		 * __________________________________________________________________________________		
+		 */
 		JPanel Right = new JPanel();
 		footer.add(Right, BorderLayout.EAST);
 		

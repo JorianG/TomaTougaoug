@@ -21,5 +21,15 @@ public enum Couleur {
 		}
 		return null;
 	}
+	
+	public static String[] getAllCouleur() {
+		String[] tab = new String[Couleur.values().length];
+		int i = 0;
+		for (Couleur t : Couleur.values()) {
+			tab[i] = t.getDenomination();
+			i+=1;
+		}
+		return tab;
+	}
 
 }
