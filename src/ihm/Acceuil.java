@@ -1,10 +1,14 @@
 package ihm;
 import modele.Tomates;
+
 import modele.GenerationArticles;
+
 
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.LinkedList;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,6 +66,7 @@ public class Acceuil extends JFrame {
 	public List<Tomate> instBd = bdTomates.getLesTomates();
 	private JComboBox comboCat;
 	private JComboBox comboCouleur;
+	private List<Tomate> listAcc = new LinkedList();
 	
 	
 	private class article{
@@ -125,18 +130,62 @@ public class Acceuil extends JFrame {
 	 */
 	public void fillTable() {
 		emptyTable();
-		for(int i =0; i < instBd.size(); i++) {
+		listAcc.clear();
 			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
 			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
-			System.out.println(instBd.get(i).getCouleur().getDenomination());
-			if(instBd.get(i).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem()) && instBd.get(i).getCouleur().getDenomination().equals(comboCouleur.getSelectedItem())) {
-				modeleTable.addRow(new Object[] {instBd.get(i).getDésignation(),
-						instBd.get(i).getPrixTTC() + " € pour " + instBd.get(i).getNombreDeGraines() + " graines",
-						instBd.get(i).getNomImage() });
+			//System.out.println(instBd.get(i).getCouleur().getDenomination());
+
+			
+		if (comboCat.getSelectedItem() == "tous" && comboCouleur.getSelectedItem() == "tous") {
+			for(int itt = 0; itt < instBd.size(); itt++) {
+				modeleTable.addRow(new Object[] {instBd.get(itt).getDésignation(),
+						instBd.get(itt).getPrixTTC() + " € pour " + instBd.get(itt).getNombreDeGraines() + " graines",
+						instBd.get(itt).getNomImage() });
+				listAcc.add(instBd.get(itt));
 			}
 			
+		}else if(comboCat.getSelectedItem() == "tous"&& comboCouleur.getSelectedItem() != "tous") {
+			for(int itt = 0; itt < instBd.size(); itt++) {
+				/**
+				 * 
+				 */
+				if (instBd.get(itt).getCouleur().getDenomination().equals(comboCouleur.getSelectedItem())) {
+					modeleTable.addRow(new Object[] {instBd.get(itt).getDésignation(),
+							instBd.get(itt).getPrixTTC() + " € pour " + instBd.get(itt).getNombreDeGraines() + " graines",
+							instBd.get(itt).getNomImage() });
+					listAcc.add(instBd.get(itt));
+				}
+				
+			}
+		}else if(comboCat.getSelectedItem() != "tous"&& comboCouleur.getSelectedItem() == "tous") {
+			for(int itt = 0; itt < instBd.size(); itt++) {
+				/**
+				 * 
+				 */
+				if (instBd.get(itt).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem())) {
+					modeleTable.addRow(new Object[] {instBd.get(itt).getDésignation(),
+							instBd.get(itt).getPrixTTC() + " € pour " + instBd.get(itt).getNombreDeGraines() + " graines",
+							instBd.get(itt).getNomImage() });
+					listAcc.add(instBd.get(itt));
+				}
+				
+			}
+		}else {
+			for(int itt = 0; itt < instBd.size(); itt++) {
+				/**
+				 * 
+				 */
+				if (instBd.get(itt).getTypeGraine().getDenomination().equals(comboCat.getSelectedItem()) && instBd.get(itt).getCouleur().getDenomination().equals(comboCouleur.getSelectedItem())) {
+					modeleTable.addRow(new Object[] {instBd.get(itt).getDésignation(),
+							instBd.get(itt).getPrixTTC() + " € pour " + instBd.get(itt).getNombreDeGraines() + " graines",
+							instBd.get(itt).getNomImage() });
+					listAcc.add(instBd.get(itt));
+				}
+			}
 		}
-	}
+			
+		}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -272,8 +321,11 @@ public class Acceuil extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				System.out.println(instBd.get(table.getSelectedRow()));
+				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+				    ihm.InfoTomate.
+				  }
+				System.out.println(table.getSelectedRow());
+				System.out.println(listAcc.get(table.getSelectedRow()));
 			}
 		});
 		scrollPane.setViewportView(table);

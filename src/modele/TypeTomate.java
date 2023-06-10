@@ -24,8 +24,10 @@ public enum TypeTomate {
 	}
 	
 	public static String[] getAllTypeTomate() {
-		String[] tab = new String[TypeTomate.values().length];
+		String[] tab = new String[TypeTomate.values().length+1];
 		int i = 0;
+		tab[i] = "tous";
+		i+=1;
 		for (TypeTomate t : TypeTomate.values()) {
 			tab[i] = t.getDenomination();
 			i+=1;
