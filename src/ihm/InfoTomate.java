@@ -28,12 +28,12 @@ public class InfoTomate extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(Tomate args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Tomates test = GenerationArticles.generationDeBaseDesTomates();
 				try {
-					InfoTomate frame = new InfoTomate(test.getLesTomates().get(0));
+					InfoTomate frame = new InfoTomate(args);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
