@@ -322,7 +322,8 @@ public class Acceuil extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				    ihm.InfoTomate.
+					System.out.println("bd");
+				    ihm.InfoTomate.main(listAcc.get(table.getSelectedRow()));
 				  }
 				System.out.println(table.getSelectedRow());
 				System.out.println(listAcc.get(table.getSelectedRow()));
