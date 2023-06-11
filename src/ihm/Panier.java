@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.Tomate;
 import modele.Tomates;
+import modele.EPanier;
 import modele.GenerationArticles;
 
 import java.awt.event.ActionListener;
@@ -38,7 +39,6 @@ import javax.swing.ScrollPaneConstants;
 public class Panier extends JFrame {
 	
 	private Tomates test;
-	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
 	private JTextField textFieldST;
@@ -49,12 +49,11 @@ public class Panier extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Tomates test = GenerationArticles.generationDeBaseDesTomates();
 				try {
-					Panier frame = new Panier(test);
+					Panier frame = new Panier();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,8 +66,8 @@ public class Panier extends JFrame {
 		System.out.println("bibou uwu");
 		this.modeleTable.setRowCount(0);
 		// TODO recupérer les séléctions
-		for (Tomate t: test.getLesTomates()) {
-			this.modeleTable.addRow(new Object[] {t.getNomImage(), t.getDésignation(), (float) 42, t.getPrixTTC(), (float) (42*t.getPrixTTC())});
+		for (EPanier t: ihm.Acceuil.listPanier) {
+			this.modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), (float) (t.getNombre()*t.getTomate().getPrixTTC())});
 		}
 	}
 	
@@ -95,16 +94,15 @@ public class Panier extends JFrame {
 	}
 	
 	public void viderTable() {
+		// Ajouter le pop-up de confirmation
+		ihm.Acceuil.listPanier.clear();
 		this.modeleTable.setRowCount(0);
 	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public Panier(Tomates test) {
-		this.test = test;
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Panier() {
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,6 +138,13 @@ public class Panier extends JFrame {
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				//TODO paiement
+			}
+		});
 		panel_1.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Vider");
@@ -155,11 +160,7 @@ public class Panier extends JFrame {
 		btnNewButton_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ihm.Acceuil.main(null);
-			}
-		});
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		panel_1.add(btnNewButton_4);

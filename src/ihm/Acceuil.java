@@ -1,6 +1,6 @@
 package ihm;
 import modele.Tomates;
-
+import modele.EPanier;
 import modele.GenerationArticles;
 
 
@@ -61,12 +61,13 @@ public class Acceuil extends JFrame {
 	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
-	private Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
+	protected static Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
+	protected static List<EPanier> listPanier;
 	private JTable table;
 	public List<Tomate> instBd = bdTomates.getLesTomates();
 	private JComboBox comboCat;
 	private JComboBox comboCouleur;
-	private List<Tomate> listAcc = new LinkedList();
+	private List<Tomate> listAcc = new LinkedList<Tomate>();
 	
 	
 	private class article{
@@ -190,6 +191,9 @@ public class Acceuil extends JFrame {
 	 * Create the frame.
 	 */
 	public Acceuil() {
+	
+		this.listPanier = new LinkedList<EPanier>();
+	
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Acceuil.class.getResource("/images/TomaTougaoug.png")));
 		setTitle("TomaTougaoug");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -275,7 +279,11 @@ public class Acceuil extends JFrame {
 		panier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ihm.Panier.main(null);;
+				if (listPanier.size() != 0) {
+					ihm.Panier.main();
+				} else {
+					System.out.println("Ta grand mère va coder le pop-up");
+				}
 			}
 		});
 		panier.setSize(new Dimension(80, 40));

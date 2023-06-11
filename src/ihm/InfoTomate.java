@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modele.EPanier;
 import modele.GenerationArticles;
 import modele.Tomate;
 import modele.Tomates;
@@ -27,6 +28,8 @@ import java.awt.Dimension;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InfoTomate extends JFrame {
 
@@ -39,7 +42,6 @@ public class InfoTomate extends JFrame {
 	public static void main(Tomate args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Tomates test = GenerationArticles.generationDeBaseDesTomates();
 				try {
 					InfoTomate frame = new InfoTomate(args);
 					frame.setVisible(true);
@@ -71,7 +73,7 @@ public class InfoTomate extends JFrame {
 		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new GridLayout(4, 1, 10, 0));
+		panel.setLayout(new GridLayout(4, 1, 150, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		panel.add(lblNewLabel_1);
@@ -81,7 +83,18 @@ public class InfoTomate extends JFrame {
 		
 		panel.add(Image);
 		
+		JLabel lblapparantée = new JLabel("Tomate apparentée");
+		panel.add(lblapparantée);
+		
 		JList list = new JList();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+				    ihm.InfoTomate.main(ihm.Acceuil.bdTomates.getTomate((String) list.getSelectedValue()));
+				  }
+			}
+		});
 		list.setModel(new AbstractListModel() {
 		String[] values = tomate.getTomatesApparentéesString();
 			public int getSize() {
@@ -110,12 +123,28 @@ public class InfoTomate extends JFrame {
 		panel_1.add(panel_2, BorderLayout.SOUTH);
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setValue(1);
 		panel_2.add(spinner);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Annuler");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+	
 		panel_2.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("Ajouter");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ihm.Acceuil.listPanier.add(new EPanier(tomate, (int) spinner.getValue()));
+				// TODO test si la tomate est déjà dans le panier ET mises à jour du bouton panier
+				dispose();
+			}
+		});
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_2.add(btnNewButton_1);
 		
