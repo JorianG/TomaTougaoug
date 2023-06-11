@@ -19,11 +19,19 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextPane;
+import javax.swing.JSpinner;
+import java.awt.Dimension;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 public class InfoTomate extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JPanel panel;
 
 	/**
 	 * Launch the application.
@@ -45,59 +53,83 @@ public class InfoTomate extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public InfoTomate(Tomate tomate) {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
+		setBounds(100, 100, 669, 456);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_2 = new JPanel();
-		contentPane.add(panel_2, BorderLayout.SOUTH);
+		JLabel lblNewLabel = new JLabel(tomate.getDésignation());
+		lblNewLabel.setPreferredSize(new Dimension(46, 40));
+		lblNewLabel.setFont(new Font("Kunstler Script", Font.PLAIN, 36));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
-		JButton btnNewButton = new JButton("Annuler");
-		panel_2.add(btnNewButton);
+		panel = new JPanel();
+		contentPane.add(panel, BorderLayout.WEST);
+		panel.setLayout(new GridLayout(4, 1, 10, 0));
 		
-		JButton btnNewButton_1 = new JButton("Ajouter");
-		panel_2.add(btnNewButton_1);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JLabel lblNomTomate = new JLabel(tomate.getDésignation());
-		panel.add(lblNomTomate);
-		
-		JLabel lblNewLabel_1 = new JLabel("Description");
+		JLabel lblNewLabel_1 = new JLabel("");
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("/images/Tomates200x200/"+ tomate.getNomImage()+".jpg"));
-		panel.add(lblNewLabel);
+		JLabel Image = new JLabel("");
+		Image.setIcon(new ImageIcon(InfoTomate.class.getResource("/images/Tomates200x200/"+ tomate.getNomImage() + ".jpg")));
 		
-		textField = new JTextField(tomate.getDescription());
-		textField.setColumns(10);
-		panel.add(textField);
+		panel.add(Image);
 		
-		if (tomate.isDisponible()) {
-			JLabel lblstock = new JLabel("En Stock");
-			panel.add(lblstock);
-		} else {
-			JLabel lblstock = new JLabel("Epuisée");
-			panel.add(lblstock);
-		}
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+		String[] values = tomate.getTomatesApparentéesString();
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setVisibleRowCount(tomate.getTomatesApparentées().size());
+		panel.add(list);
 		
 		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox);
+		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setPreferredSize(new Dimension(10, 50));
+		panel_1.add(panel_4_1, BorderLayout.NORTH);
+		
+		JTextPane txtpnAa = new JTextPane();
+		txtpnAa.setText(tomate.getDescription());
+		panel_1.add(txtpnAa, BorderLayout.CENTER);
+		
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2, BorderLayout.SOUTH);
+		
+		JSpinner spinner = new JSpinner();
+		panel_2.add(spinner);
+		
+		JButton btnNewButton = new JButton("New button");
+		panel_2.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_2.add(btnNewButton_1);
 		
 		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
+		panel_3.setPreferredSize(new Dimension(100, 10));
+		panel_3.setSize(new Dimension(900, 0));
+		panel_1.add(panel_3, BorderLayout.WEST);
+		
+		if (tomate.isDisponible()) {
+			lblNewLabel_1.setText("En Stock");
+		} else {
+			lblNewLabel_1.setText("Epuisée");
+
+		}
 	}
 
 }

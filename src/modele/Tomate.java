@@ -118,6 +118,15 @@ public class Tomate {
 	public List<Tomate> getTomatesApparentées() {
 		return tomatesApparentées;
 	}
+	public String[] getTomatesApparentéesString() {
+		String[] tab = new String[tomatesApparentées.size()];
+		for(int i =0; i < tomatesApparentées.size() ; i++) {
+			tab[i] = tomatesApparentées.get(i).getDésignation();
+			
+		}
+		return tab;
+	}
+
 
 	public void addTomateApparentée(Tomate tomate) {
 		this.tomatesApparentées.add(tomate);
