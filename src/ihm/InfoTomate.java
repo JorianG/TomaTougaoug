@@ -61,7 +61,7 @@ public class InfoTomate extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 	public InfoTomate(Tomate tomate) {
 		
 		setBounds(100, 100, 669, 456);
@@ -163,7 +163,6 @@ public class InfoTomate extends JFrame {
 				boolean modif = false;
 				for (EPanier article: ihm.Acceuil.listPanier) {
 					if (article.getTomate().getDésignation() == tomate.getDésignation()) {
-						System.out.println("ça fait le taf");
 						article.addNombre((int) spinner.getValue());
 						ihm.Panier.calcValPanier(); 
 						ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
