@@ -93,6 +93,12 @@ public class Panier extends JFrame {
 		this.textFieldTotal.setText(""+(total)+"€");
 	}
 	
+	public void recalcul() {
+		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
+			this.modeleTable.mo
+		}
+	}
+	
 	public void viderTable() {
 		// Ajouter le pop-up de confirmation
 		ihm.Acceuil.listPanier.clear();
