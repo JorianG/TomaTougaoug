@@ -160,8 +160,21 @@ public class InfoTomate extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ihm.Acceuil.listPanier.add(new EPanier(tomate, (int) spinner.getValue()));
-				// TODO test si la tomate est déjà dans le panier ET mises à jour du bouton panier
+				boolean modif = false;
+				for (EPanier article: ihm.Acceuil.listPanier) {
+					if (article.getTomate().getDésignation() == tomate.getDésignation()) {
+						System.out.println("ça fait le taf");
+						article.addNombre((int) spinner.getValue());
+						ihm.Panier.calcValPanier(); 
+						ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
+						modif = true;
+					}
+				}
+				if (!modif) {
+					ihm.Acceuil.listPanier.add(new EPanier(tomate, (int) spinner.getValue()));
+					ihm.Panier.calcValPanier(); 
+					ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
+				}
 				dispose();
 			}
 		});
