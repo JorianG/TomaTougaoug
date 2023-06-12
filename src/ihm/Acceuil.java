@@ -60,13 +60,12 @@ import java.awt.event.ItemEvent;
 public class Acceuil extends JFrame {
 	
 	
-	
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
 	protected static Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
 	protected static List<EPanier> listPanier;
 	private JTable table;
-	public List<Tomate> instBd = bdTomates.getLesTomates();
+	public 	List<Tomate> instBd = bdTomates.getLesTomates();
 	private JComboBox comboCat;
 	private JComboBox comboCouleur;
 	private List<Tomate> listAcc = new LinkedList<Tomate>();
@@ -229,7 +228,6 @@ public class Acceuil extends JFrame {
 			}
 		});
 		comboCat.setModel(new DefaultComboBoxModel(modele.TypeTomate.getAllTypeTomate()));
-		//comboCat.setModel(new DefaultComboBoxModel(new String[] {modele.TypeTomate.TOMATES.getDenomination(),modele.TypeTomate.TOMATES_CERISES.getDenomination()}));
 		Left.add(comboCat);
 		comboCat.setSelectedIndex(0);
 		
