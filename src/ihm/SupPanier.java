@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 public class SupPanier extends JFrame {
 
 	private JPanel contentPane;
+	protected static boolean suppPanier = false;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,10 @@ public class SupPanier extends JFrame {
 		
 		JButton btnNewButton = new JButton("Oui");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
+			public void actionPerformed(ActionEvent e) {
+				ihm.Panier.viderTable();
+				ihm.Panier.btnNewButton_1.setEnabled(false);
+				dispose();
 				
 			}
 		});
@@ -70,6 +74,7 @@ public class SupPanier extends JFrame {
 		JButton btnNewButton_1 = new JButton("Annuler");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				suppPanier = false;
 				dispose();
 			}
 		});
