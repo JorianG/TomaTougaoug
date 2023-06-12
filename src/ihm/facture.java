@@ -103,10 +103,13 @@ public class facture extends JFrame {
         // Générer le contenu de la facture en fonction des commandes choisies
 
         // Exemple de contenu de facture
-        String contenuFacture = "Commande 1 : Tomates cerises - Quantité : 5 - Prix unitaire : 2€\n"
-                + "Commande 2 : Tomates beefsteak - Quantité : 3 - Prix unitaire : 3€\n"
-                + "Commande 3 : Tomates cocktail - Quantité : 2 - Prix unitaire : 1.5€\n"
-                + "Total : 18.5€";
+        String contenuFacture = "					SARL Tomatougaoug\n"
+                + "					Vente de graines de tomates\n"
+                + "					133 Avenue de Rangeuil\n"
+                + "					31400 Toulouse\n"
+        		+ "					France\n"
+        		+ "					Tel : 0734256542\n"
+        		+ "					Mail : tomatougaoug@gmail.com\n\n\n";
 
         txtpnFacture.setText(contenuFacture); // Afficher le contenu de la facture dans le JTextPane
     }
