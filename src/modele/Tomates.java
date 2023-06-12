@@ -33,8 +33,10 @@ public class Tomates {
 					+ "Plantez du basilic entre vos pieds de tomates, ils s’entraident l’un l’autre…");
 
 	private List<Tomate> lesTomates;
+	private List<Client> lesClients;
 	public Tomates() {
 		this.lesTomates = new LinkedList<Tomate>();
+		this.lesClients = new LinkedList<Client>();
 	}
 
 	public void addTomates(List<Tomate> tomates) {
@@ -43,6 +45,10 @@ public class Tomates {
 
 	public List<Tomate> getLesTomates() {
 		return lesTomates;
+	}
+	
+	public List<Client> getLesClients() {
+		return lesClients;
 	}
 	
 	@Override
