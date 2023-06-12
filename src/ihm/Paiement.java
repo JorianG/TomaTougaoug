@@ -23,6 +23,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import java.awt.Toolkit;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Paiement extends JFrame {
 
@@ -35,6 +37,7 @@ public class Paiement extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private static List<JTextField> listField;
 
 	/**
 	 * Launch the application.
@@ -51,6 +54,16 @@ public class Paiement extends JFrame {
 			}
 		});
 	}
+	
+	public static boolean testFullFill() {
+		for (JTextField tf: listField) {
+			if (tf.getText() == "" && tf.getName() != "Adresse2") {
+				return false;
+			}
+		}
+		return true;
+	}
+	//todo grisé le bouton si les champs ne sont pas rempis, mémoriser info client, les ressortir, etc... bla bla bla je dors
 
 	/**
 	 * Create the frame.
@@ -201,6 +214,7 @@ public class Paiement extends JFrame {
 		panel.add(label_6, gbc_label_6);
 		
 		textField_3 = new JTextField();
+		textField_3.setName("Adresse2");
 		textField_3.setColumns(10);
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.fill = GridBagConstraints.BOTH;
@@ -344,6 +358,17 @@ public class Paiement extends JFrame {
 		gbc_textField_7.gridx = 2;
 		gbc_textField_7.gridy = 7;
 		panel.add(textField_7, gbc_textField_7);
+		
+		listField = new LinkedList<JTextField>();
+		listField.add(textField);
+		listField.add(textField_1);
+		listField.add(textField_2);
+		listField.add(textField_3);
+		listField.add(textField_4);
+		listField.add(textField_5);
+		listField.add(textField_6);
+		listField.add(textField_7);
+		
 		
 		JLabel label_15 = new JLabel("");
 		GridBagConstraints gbc_label_15 = new GridBagConstraints();
