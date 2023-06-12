@@ -64,20 +64,12 @@ public class Acceuil extends JFrame {
 	private DefaultTableModel modeleTable;
 	protected static Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
 	protected static List<EPanier> listPanier;
+	protected static JLabel eurPanier;
 	private JTable table;
 	public 	List<Tomate> instBd = bdTomates.getLesTomates();
 	private JComboBox comboCat;
 	private JComboBox comboCouleur;
 	private List<Tomate> listAcc = new LinkedList<Tomate>();
-	
-	
-	private class article{
-		public article(Tomate t, int nb) {
-			Tomate tomate = t;
-			int nombre = nb;
-			
-		}
-	}
 	
 	/**
 	 * Launch the application.
@@ -298,7 +290,7 @@ public class Acceuil extends JFrame {
 		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panier.add(txtPanier);
 		
-		JLabel eurPanier = new JLabel("0.00€");
+		eurPanier = new JLabel(ihm.Panier.valPanier+"€");
 		eurPanier.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panier.add(eurPanier);
 		
