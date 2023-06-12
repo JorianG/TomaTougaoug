@@ -31,11 +31,16 @@ import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Rectangle;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InfoTomate extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
+	private JSpinner spinner;
+
 
 	/**
 	 * Launch the application.
@@ -93,6 +98,7 @@ public class InfoTomate extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
 				    ihm.InfoTomate.main(ihm.Acceuil.bdTomates.getTomate((String) list.getSelectedValue()));
+				    dispose();
 				  }
 			}
 		});
@@ -121,15 +127,32 @@ public class InfoTomate extends JFrame {
 		panel_1.add(txtpnAa, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setMinimumSize(new Dimension(50, 10));
 		panel_1.add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Annuler");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 			}
 		});
+		panel_2.setLayout(new GridLayout(0, 4, 10, 10));
+		
+		JLabel lblQuantite = new JLabel("Quantité : ");
+		lblQuantite.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_2.add(lblQuantite);
+		
+		JSpinner spinner = new JSpinner();
+		panel_2.add(spinner);
+		spinner.setBounds(new Rectangle(0, 0, 10, 0));
+		spinner.setMinimumSize(new Dimension(50, 20));
+		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+		spinner.setValue(1);
 	
 		panel_2.add(btnNewButton);
 		
@@ -142,14 +165,7 @@ public class InfoTomate extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_2.add(btnNewButton_1);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setMinimumSize(new Dimension(50, 20));
-		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
-		panel_2.add(spinner);
-		spinner.setValue(1);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setPreferredSize(new Dimension(100, 10));
