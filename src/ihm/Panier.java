@@ -106,7 +106,11 @@ public class Panier extends JFrame {
 
 	public Panier(Tomates test) {
 		this.test = test;
+<<<<<<< Updated upstream
 
+=======
+		
+>>>>>>> Stashed changes
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
