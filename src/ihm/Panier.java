@@ -170,6 +170,7 @@ public class Panier extends JFrame {
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ihm.SupPanier.main(null);
 				viderTable();
 			}
 		});
