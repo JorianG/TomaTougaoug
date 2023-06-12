@@ -63,7 +63,7 @@ public class Panier extends JFrame {
 	}
 	
 	public static void calcValPanier() {
-		valPanier = 4.5F;
+		valPanier = 0F;
 		for (EPanier e: ihm.Acceuil.listPanier) {
 			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
 		}
