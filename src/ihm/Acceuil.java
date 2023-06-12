@@ -284,7 +284,7 @@ public class Acceuil extends JFrame {
 				if (listPanier.size() != 0) {
 					ihm.Panier.main();
 				} else {
-					System.out.println("Ta grand mère va coder le pop-up");
+					ihm.PanierVide.main(null);
 				}
 			}
 		});
