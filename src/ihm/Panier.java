@@ -11,6 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import java.awt.Rectangle;
@@ -37,6 +42,8 @@ import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class Panier extends JFrame {
 	
@@ -72,7 +79,6 @@ public class Panier extends JFrame {
 	
 	public static void fillTable() {
 		modeleTable.setRowCount(0);
-		// TODO recupérer les séléctions
 		for (EPanier t: ihm.Acceuil.listPanier) {
 			modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), round((float) (t.getNombre()*t.getTomate().getPrixTTC()))});
 		}
@@ -88,37 +94,63 @@ public class Panier extends JFrame {
 	public static void recalcul() {
 		valPanier = 0;
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
-			float val = (float) modeleTable.getValueAt(i, 2) * (float) modeleTable.getValueAt(i, 3);
-			valPanier += val;
-			Object[] data = new Object[] {
-					modeleTable.getValueAt(i, 0),
-					modeleTable.getValueAt(i, 1),
-					modeleTable.getValueAt(i, 2),
-					modeleTable.getValueAt(i, 3),
-					round(val)
-			};
-			modeleTable.removeRow(i);
-			modeleTable.insertRow(i, data);
-			
+			if (modeleTable.getValueAt(i, 2) instanceof String) {
+				float val = (float) Integer.parseInt((String) modeleTable.getValueAt(i, 2)) * (float) modeleTable.getValueAt(i, 3);
+				valPanier += val;
+				Object[] data = new Object[] {
+						modeleTable.getValueAt(i, 0),
+						modeleTable.getValueAt(i, 1),
+						modeleTable.getValueAt(i, 2),
+						modeleTable.getValueAt(i, 3),
+						round(val)
+				};
+				modeleTable.removeRow(i);
+				modeleTable.insertRow(i, data);	
+				updateListPanier();
+			} else {
+				float val = (float) modeleTable.getValueAt(i, 2) * (float) modeleTable.getValueAt(i, 3);
+				valPanier += val;
+				Object[] data = new Object[] {
+						modeleTable.getValueAt(i, 0),
+						modeleTable.getValueAt(i, 1),
+						modeleTable.getValueAt(i, 2),
+						modeleTable.getValueAt(i, 3),
+						round(val)
+				};
+				modeleTable.removeRow(i);
+				modeleTable.insertRow(i, data);	
+			}	
 		}
 		valPanier = round(valPanier);
 		float total = (float) (valPanier+4.50);
 		textFieldST.setText(""+valPanier+"€");
 		textFieldTotal.setText(""+(total)+"€");
+		
 	}
 	
+	
+	public static void updateListPanier() {
+		for (int i = 0; i < modeleTable.getRowCount(); i++) {
+			for (EPanier article: ihm.Acceuil.listPanier) {
+				if (article.getTomate().getDésignation() == modeleTable.getValueAt(i, 1)) {
+					article.setNombre(Integer.parseInt((String) modeleTable.getValueAt(i, 2)));
+				}
+			}
+		}
+	}
 
 	public static void viderTable() {
-		// Ajouter le pop-up de confirmation
 		ihm.Acceuil.listPanier.clear();
 		modeleTable.setRowCount(0);
 		recalcul();
+		ihm.Acceuil.eurPanier.setText("0.0€");
 	}
 	
 	/**
 	 * Create the frame.
 	 */
 
+	@SuppressWarnings("serial")
 	public Panier() {
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
@@ -132,7 +164,15 @@ public class Panier extends JFrame {
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
 		modeleTable = new DefaultTableModel(
-				new Object[] {"Image", "Produit", "Quantit\u00E9", "Prix/u", "Total"}, 0);
+				new Object[] {"Image", "Produit", "Quantit\u00E9", "Prix/u", "Total"}, 0) {
+				boolean[] canEdit = new boolean[] {false, false, true, false, false};
+				@Override
+				public boolean isCellEditable(int rowIndex, int columnIndex) {
+					return canEdit[columnIndex];
+				}
+		};
+
+		
 		
 		JPanel south = new JPanel();
 		south.setBounds(new Rectangle(0, 0, 0, 100));
@@ -223,7 +263,7 @@ public class Panier extends JFrame {
 		
 		table = new JTable();
 		table.setModel(modeleTable);
-		table.setEnabled(false);
+		table.setEnabled(true);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setViewportView(table);
 		
