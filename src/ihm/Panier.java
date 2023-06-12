@@ -41,12 +41,12 @@ import javax.swing.ScrollPaneConstants;
 public class Panier extends JFrame {
 	
 	protected static float valPanier = 0;
-	private Tomates test;
 	private JPanel contentPane;
-	private DefaultTableModel modeleTable;
-	private JTextField textFieldST;
+	private static DefaultTableModel modeleTable;
+	private static JTextField textFieldST;
+	protected static JButton btnNewButton_1;
 	private JTextField textFieldExpe;
-	private JTextField textFieldTotal;
+	private static JTextField textFieldTotal;
 	private JTable table;
 
 	/**
@@ -66,52 +66,52 @@ public class Panier extends JFrame {
 	}
 	
 	
-	public float round(float val) {
+	public static float round(float val) {
 		return  (float) Math.round(val * 100) / 100; 
 	}
 	
-	public void fillTable() {
-		System.out.println("bibou uwu");
-		this.modeleTable.setRowCount(0);
+	public static void fillTable() {
+		modeleTable.setRowCount(0);
 		// TODO recupérer les séléctions
 		for (EPanier t: ihm.Acceuil.listPanier) {
-			this.modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), round((float) (t.getNombre()*t.getTomate().getPrixTTC()))});
+			modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), round((float) (t.getNombre()*t.getTomate().getPrixTTC()))});
 		}
 	}
 	
-	public void recalcul() {
-		System.out.println(this.modeleTable.getRowCount());
+	public static void calcValPanier() {
+		valPanier = 4.5F;
+		for (EPanier e: ihm.Acceuil.listPanier) {
+			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
+		}
+	}
+	
+	public static void recalcul() {
 		valPanier = 0;
-		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
-			float val = (float) this.modeleTable.getValueAt(i, 2) * (float) this.modeleTable.getValueAt(i, 3);
+		for (int i = 0; i < modeleTable.getRowCount(); i++) {
+			float val = (float) modeleTable.getValueAt(i, 2) * (float) modeleTable.getValueAt(i, 3);
 			valPanier += val;
 			Object[] data = new Object[] {
-					this.modeleTable.getValueAt(i, 0),
-					this.modeleTable.getValueAt(i, 1),
-					this.modeleTable.getValueAt(i, 2),
-					this.modeleTable.getValueAt(i, 3),
-					val
+					modeleTable.getValueAt(i, 0),
+					modeleTable.getValueAt(i, 1),
+					modeleTable.getValueAt(i, 2),
+					modeleTable.getValueAt(i, 3),
+					round(val)
 			};
-			this.modeleTable.removeRow(i);
-			this.modeleTable.insertRow(i, data);
+			modeleTable.removeRow(i);
+			modeleTable.insertRow(i, data);
 			
 		}
 		valPanier = round(valPanier);
 		float total = (float) (valPanier+4.50);
-		this.textFieldST.setText(""+valPanier+"€");
-		this.textFieldTotal.setText(""+(total)+"€");
+		textFieldST.setText(""+valPanier+"€");
+		textFieldTotal.setText(""+(total)+"€");
 	}
 	
-	public void recalcul() {
-		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
-			this.modeleTable.mo
-		}
-	}
-	
-	public void viderTable() {
+
+	public static void viderTable() {
 		// Ajouter le pop-up de confirmation
 		ihm.Acceuil.listPanier.clear();
-		this.modeleTable.setRowCount(0);
+		modeleTable.setRowCount(0);
 		recalcul();
 	}
 	
@@ -119,9 +119,7 @@ public class Panier extends JFrame {
 	 * Create the frame.
 	 */
 
-	public Panier(Tomates test) {
-		this.test = test;
-
+	public Panier() {
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -156,12 +154,14 @@ public class Panier extends JFrame {
 		south.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1 = new JButton("Valider");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				//TODO paiement
+				if (btnNewButton_1.isEnabled()) {
+					dispose();
+					//TODO paiement
+				}
 			}
 		});
 		panel_1.add(btnNewButton_1);
@@ -171,7 +171,6 @@ public class Panier extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ihm.SupPanier.main(null);
-				viderTable();
 			}
 		});
 		panel_1.add(btnNewButton_2);
