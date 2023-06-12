@@ -10,40 +10,18 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-
-import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import java.awt.Rectangle;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-
 import javax.swing.table.DefaultTableModel;
 
-import modele.Tomate;
-import modele.Tomates;
 import modele.EPanier;
-import modele.GenerationArticles;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.JScrollPane;
-import javax.swing.table.TableModel;
 import javax.swing.ScrollPaneConstants;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
 
 public class Panier extends JFrame {
 	

@@ -7,17 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modele.EPanier;
-import modele.GenerationArticles;
 import modele.Tomate;
-import modele.Tomates;
-
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.border.BevelBorder;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -25,7 +18,6 @@ import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JSpinner;
 import java.awt.Dimension;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;

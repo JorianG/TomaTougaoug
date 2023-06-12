@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
