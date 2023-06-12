@@ -258,9 +258,6 @@ public class Acceuil extends JFrame {
 		JPanel Right = new JPanel();
 		footer.add(Right, BorderLayout.EAST);
 		
-		JButton btnNewButton = new JButton("p");
-		Right.add(btnNewButton);
-		
 		JButton Info = new JButton("Plus d'info");
 		Info.setMargin(new Insets(7, 22, 7, 22));
 		Right.add(Info);

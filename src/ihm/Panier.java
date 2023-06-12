@@ -97,6 +97,7 @@ public class Panier extends JFrame {
 		// Ajouter le pop-up de confirmation
 		ihm.Acceuil.listPanier.clear();
 		this.modeleTable.setRowCount(0);
+		recalcul();
 	}
 	
 	/**

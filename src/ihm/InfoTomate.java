@@ -30,6 +30,7 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class InfoTomate extends JFrame {
 
@@ -122,10 +123,6 @@ public class InfoTomate extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.SOUTH);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setValue(1);
-		panel_2.add(spinner);
-		
 		JButton btnNewButton = new JButton("Annuler");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -147,6 +144,12 @@ public class InfoTomate extends JFrame {
 		});
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_2.add(btnNewButton_1);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setMinimumSize(new Dimension(50, 20));
+		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
+		panel_2.add(spinner);
+		spinner.setValue(1);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setPreferredSize(new Dimension(100, 10));
