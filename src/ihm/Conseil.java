@@ -76,7 +76,7 @@ public class Conseil extends JFrame {
 		txtpnconseilsDeCulturern.setEditable(false);
 		txtpnconseilsDeCulturern.setForeground(new Color(0, 128, 0));
 		txtpnconseilsDeCulturern.setFont(new Font("Brush Script MT", Font.PLAIN, 25));
-		txtpnconseilsDeCulturern.setText("Conseils de culture\r\nSemis : mars-avril\r\nRepiquage : après les gelées\r\nRécolte : juillet à septembre, voire octobre");
+		txtpnconseilsDeCulturern.setText(ihm.Acceuil.bdTomates.CONSEILS_DE_CULTURE_TITRE);
 		titre.add(txtpnconseilsDeCulturern, BorderLayout.NORTH);
 		
 		
@@ -87,7 +87,7 @@ public class Conseil extends JFrame {
 		
 		JTextPane txtpnA = new JTextPane();
 		txtpnA.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtpnA.setText("Les tomates sont frileuses !\r\n\r\nExposition : Les tomates sont originaires d’Amérique du Sud…et leurs gènes s’en souviennent !\r\nRéservez-leur l’endroit le mieux ensoleillé de votre jardin.\r\n\r\nSemis : Démarrez vos semis en petite terrine dès mars / avril (15/20° nuit et jour) dans du terreau à semis, couvrez vos graines de 0,5 cm, tassez doucement et maintenez humide. Repiquez vos semis lorsqu’ils font 5 cm, dans des godets avec du terreau 1/3 de fumier ou du compost , enterrez jusqu’au première feuilles.\r\n\r\nAprès les Saints de glaces, plantez vos pieds de tomates dès qu’ils auront atteint 15 cm, enterrez-les jusqu’aux premières feuilles en pleine terre dans un trou avec du fumier, du compost ou quelques feuilles d’ortie si besoin, installez vos tuteurs espacés de 70 cm.\r\nArrosez abondamment les 3 premiers jours, arrêtez les 15 jours suivants puis arrosez régulièrement.\r\n\r\nPensez à pailler ! ainsi vous garderez beaucoup plus facilement la terre humide et espacerez les désherbages.\r\n\r\nMaladies pouvant toucher les tomates: mildiou (ne pas arroser les feuilles et supprimer celles qui touchent le sol).\r\n\r\nPlantez du basilic entre vos pieds de tomates, ils s’entraident l’un l’autre…");
+		txtpnA.setText(ihm.Acceuil.bdTomates.CONSEILS_DE_CULTURE);
 
 		scrollPane.setViewportView(txtpnA);
 		
