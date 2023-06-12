@@ -30,6 +30,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JScrollPane;
@@ -38,6 +40,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class Panier extends JFrame {
 	
+	protected static float valPanier = 0;
 	private Tomates test;
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
@@ -62,21 +65,26 @@ public class Panier extends JFrame {
 		});
 	}
 	
+	
+	public float round(float val) {
+		return  (float) Math.round(val * 100) / 100; 
+	}
+	
 	public void fillTable() {
 		System.out.println("bibou uwu");
 		this.modeleTable.setRowCount(0);
 		// TODO recupérer les séléctions
 		for (EPanier t: ihm.Acceuil.listPanier) {
-			this.modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), (float) (t.getNombre()*t.getTomate().getPrixTTC())});
+			this.modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), round((float) (t.getNombre()*t.getTomate().getPrixTTC()))});
 		}
 	}
 	
 	public void recalcul() {
 		System.out.println(this.modeleTable.getRowCount());
-		float sum = 0;
+		valPanier = 0;
 		for (int i = 0; i < this.modeleTable.getRowCount(); i++) {
 			float val = (float) this.modeleTable.getValueAt(i, 2) * (float) this.modeleTable.getValueAt(i, 3);
-			sum += val;
+			valPanier += val;
 			Object[] data = new Object[] {
 					this.modeleTable.getValueAt(i, 0),
 					this.modeleTable.getValueAt(i, 1),
@@ -88,8 +96,9 @@ public class Panier extends JFrame {
 			this.modeleTable.insertRow(i, data);
 			
 		}
-		float total = (float) (sum+4.50);
-		this.textFieldST.setText(""+sum+"€");
+		valPanier = round(valPanier);
+		float total = (float) (valPanier+4.50);
+		this.textFieldST.setText(""+valPanier+"€");
 		this.textFieldTotal.setText(""+(total)+"€");
 	}
 	
