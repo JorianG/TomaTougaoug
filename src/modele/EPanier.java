@@ -17,6 +17,10 @@ public class EPanier {
 		return this.tomate;
 	}
 	
+	public void addNombre(int nombre) {
+		this.nombre += nombre;
+	}
+	
 	public String toString() {
 		return this.tomate.toString() + ", " + this.nombre;
 	}
