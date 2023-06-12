@@ -21,6 +21,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import java.awt.Toolkit;
 
 public class Paiement extends JFrame {
 
@@ -54,6 +56,8 @@ public class Paiement extends JFrame {
 	 * Create the frame.
 	 */
 	public Paiement() {
+		setTitle("Formulaire de paiement");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Paiement.class.getResource("/images/TomaTougaoug.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 609);
 		contentPane = new JPanel();
@@ -71,13 +75,13 @@ public class Paiement extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] {185, 18, 235, 185, 0};
-		gbl_panel.rowHeights = new int[] {25, 25, 25, 25, 25, 25, 25, 25, 25};
+		gbl_panel.columnWidths = new int[] {275, 18, 235, 185, 0};
+		gbl_panel.rowHeights = new int[] {25, 25, 25, 25, 25, 25, 25};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("Nom :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -111,7 +115,7 @@ public class Paiement extends JFrame {
 		gbc_label_1.gridy = 0;
 		panel.add(label_1, gbc_label_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("New label");
+		JLabel lblNewLabel_1_1 = new JLabel("Prénom :");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1_1.fill = GridBagConstraints.BOTH;
@@ -145,7 +149,7 @@ public class Paiement extends JFrame {
 		gbc_label_3.gridy = 1;
 		panel.add(label_3, gbc_label_3);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("New label");
+		JLabel lblNewLabel_1_2 = new JLabel("Adresse 1 :");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_2 = new GridBagConstraints();
 		gbc_lblNewLabel_1_2.fill = GridBagConstraints.BOTH;
@@ -179,7 +183,7 @@ public class Paiement extends JFrame {
 		gbc_label_5.gridy = 2;
 		panel.add(label_5, gbc_label_5);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("New label");
+		JLabel lblNewLabel_1_3 = new JLabel("Adresse 2 :");
 		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_3 = new GridBagConstraints();
 		gbc_lblNewLabel_1_3.fill = GridBagConstraints.BOTH;
@@ -213,7 +217,7 @@ public class Paiement extends JFrame {
 		gbc_label_7.gridy = 3;
 		panel.add(label_7, gbc_label_7);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("New label");
+		JLabel lblNewLabel_1_4 = new JLabel("Code Postal :");
 		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_4 = new GridBagConstraints();
 		gbc_lblNewLabel_1_4.fill = GridBagConstraints.BOTH;
@@ -247,7 +251,7 @@ public class Paiement extends JFrame {
 		gbc_label_9.gridy = 4;
 		panel.add(label_9, gbc_label_9);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("New label");
+		JLabel lblNewLabel_1_5 = new JLabel("Ville :");
 		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_5 = new GridBagConstraints();
 		gbc_lblNewLabel_1_5.fill = GridBagConstraints.BOTH;
@@ -281,7 +285,7 @@ public class Paiement extends JFrame {
 		gbc_label_11.gridy = 5;
 		panel.add(label_11, gbc_label_11);
 		
-		JLabel lblNewLabel_1_6 = new JLabel("New label");
+		JLabel lblNewLabel_1_6 = new JLabel("Téléphone :");
 		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_6 = new GridBagConstraints();
 		gbc_lblNewLabel_1_6.fill = GridBagConstraints.BOTH;
@@ -315,7 +319,7 @@ public class Paiement extends JFrame {
 		gbc_label_13.gridy = 6;
 		panel.add(label_13, gbc_label_13);
 		
-		JLabel lblNewLabel_1_7 = new JLabel("New label");
+		JLabel lblNewLabel_1_7 = new JLabel("Email :");
 		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_7 = new GridBagConstraints();
 		gbc_lblNewLabel_1_7.fill = GridBagConstraints.BOTH;
@@ -367,13 +371,20 @@ public class Paiement extends JFrame {
 		panel_4.setBackground(new Color(192, 192, 192));
 		mode_paiement.add(panel_4, BorderLayout.CENTER);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnNewRadioButton.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Paypal");
+		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnNewRadioButton_1.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Paiement par chèque");
+		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnNewRadioButton_2.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton_2);
 		
 		JPanel spacer = new JPanel();
@@ -398,6 +409,16 @@ public class Paiement extends JFrame {
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1.setFont(new Font("Verdana", Font.PLAIN, 16));
 		panel_2.add(lblNewLabel_2_1, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel_3 = new JLabel("Souhaitez vous vous abonner à notre newsletter ?");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_2.add(lblNewLabel_3, BorderLayout.CENTER);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("S'abonner à la newsletter");
+		chckbxNewCheckBox.setSelected(true);
+		chckbxNewCheckBox.setBackground(new Color(192, 192, 192));
+		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_2.add(chckbxNewCheckBox, BorderLayout.SOUTH);
 		
 		JPanel panel_3 = new JPanel();
 		news.add(panel_3, BorderLayout.SOUTH);
