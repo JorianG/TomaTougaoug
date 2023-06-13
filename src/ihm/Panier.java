@@ -63,7 +63,7 @@ public class Panier extends JFrame {
 	}
 	
 	public static void calcValPanier() {
-		valPanier = 4.5F;
+		valPanier = 0F;
 		for (EPanier e: ihm.Acceuil.listPanier) {
 			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
 		}
@@ -158,7 +158,7 @@ public class Panier extends JFrame {
 		contentPane.add(south, BorderLayout.SOUTH);
 		south.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("Recacul");
+		JButton btnNewButton = new JButton("Recalcul");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -177,8 +177,8 @@ public class Panier extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (btnNewButton_1.isEnabled()) {
+					ihm.Paiement.main(null);
 					dispose();
-					//TODO paiement
 				}
 			}
 		});

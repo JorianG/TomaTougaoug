@@ -26,6 +26,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
 
 public class InfoTomate extends JFrame {
 
@@ -105,22 +106,18 @@ public class InfoTomate extends JFrame {
 		});
 		list.setVisibleRowCount(tomate.getTomatesApparentées().size());
 		panel.add(list);
-		
+
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_4_1 = new JPanel();
-		panel_4_1.setPreferredSize(new Dimension(10, 50));
-		panel_1.add(panel_4_1, BorderLayout.NORTH);
+		JPanel space_top = new JPanel();
+		space_top.setPreferredSize(new Dimension(10, 50));
+		panel_1.add(space_top, BorderLayout.NORTH);
 		
-		JTextPane txtpnAa = new JTextPane();
-		txtpnAa.setText(tomate.getDescription());
-		panel_1.add(txtpnAa, BorderLayout.CENTER);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setMinimumSize(new Dimension(50, 10));
-		panel_1.add(panel_2, BorderLayout.SOUTH);
+		JPanel South = new JPanel();
+		South.setMinimumSize(new Dimension(50, 10));
+		panel_1.add(South, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Annuler");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -133,20 +130,20 @@ public class InfoTomate extends JFrame {
 				dispose();
 			}
 		});
-		panel_2.setLayout(new GridLayout(0, 4, 10, 10));
+		South.setLayout(new GridLayout(0, 4, 10, 10));
 		
 		JLabel lblQuantite = new JLabel("Quantité : ");
 		lblQuantite.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel_2.add(lblQuantite);
+		South.add(lblQuantite);
 		
 		JSpinner spinner = new JSpinner();
-		panel_2.add(spinner);
+		South.add(spinner);
 		spinner.setBounds(new Rectangle(0, 0, 10, 0));
 		spinner.setMinimumSize(new Dimension(50, 20));
 		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 		spinner.setValue(1);
 	
-		panel_2.add(btnNewButton);
+		South.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ajouter");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -169,12 +166,28 @@ public class InfoTomate extends JFrame {
 				dispose();
 			}
 		});
-		panel_2.add(btnNewButton_1);
+		South.add(btnNewButton_1);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setPreferredSize(new Dimension(100, 10));
-		panel_3.setSize(new Dimension(900, 0));
-		panel_1.add(panel_3, BorderLayout.WEST);
+		JPanel space_west = new JPanel();
+		space_west.setPreferredSize(new Dimension(100, 10));
+		space_west.setSize(new Dimension(900, 0));
+		panel_1.add(space_west, BorderLayout.WEST);
+		
+		JPanel Center_container = new JPanel();
+		panel_1.add(Center_container, BorderLayout.CENTER);
+		Center_container.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane desc = new JTextPane();
+		desc.setText(tomate.getDescription());
+		Center_container.add(desc);
+		
+		JPanel south = new JPanel();
+		Center_container.add(south, BorderLayout.SOUTH);
+		south.setLayout(new GridLayout(3, 2, 20, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setPreferredSize(new Dimension(30, 10));
+		Center_container.add(panel_2, BorderLayout.EAST);
 		
 		if (tomate.isDisponible()) {
 			lblNewLabel_1.setText("En Stock");
