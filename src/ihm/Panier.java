@@ -158,7 +158,7 @@ public class Panier extends JFrame {
 		contentPane.add(south, BorderLayout.SOUTH);
 		south.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("Recacul");
+		JButton btnNewButton = new JButton("Recalcul");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
