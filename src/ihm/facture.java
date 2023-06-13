@@ -149,8 +149,9 @@ public class facture extends JFrame {
         // Générer le contenu de la facture en fonction des commandes choisies
 
         // Exemple de contenu de facture
+    	String contenuFacture = "";
     	if (client.getAdresse2() == "") {
-    		String contenuFacture = "					SARL Tomatougaoug\n"
+    		contenuFacture = "					SARL Tomatougaoug\n"
                     + "					Vente de graines de tomates\n"
                     + "					133 Avenue de Rangeuil\n"
                     + "					31400 Toulouse\n"
@@ -169,7 +170,7 @@ public class facture extends JFrame {
     			+ "Expédition Forfait France :  4.5 €\n"
     			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Panier.valPanier+4.5)))+" €\n";
     	} else {
-    		String contenuFacture = "					SARL Tomatougaoug\n"
+    		contenuFacture = "					SARL Tomatougaoug\n"
                     + "					Vente de graines de tomates\n"
                     + "					133 Avenue de Rangeuil\n"
                     + "					31400 Toulouse\n"

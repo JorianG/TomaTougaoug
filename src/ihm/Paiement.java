@@ -67,7 +67,6 @@ public class Paiement extends JFrame {
 	
 	public static boolean testFullFill() {
 		for (JTextField tf: listField) {
-			System.out.println(tf.getText().isEmpty()+" bal "+tf.getName());
 			if (tf.getText().isEmpty() && tf.getName() != "Adresse2") {
 				return false;
 			}
@@ -501,7 +500,6 @@ public class Paiement extends JFrame {
 					ihm.ChampsManquantsF.main(null);
 				} else {
 					addClient();
-					System.out.println(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
 					ihm.facture.main(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
 				}
 			}
