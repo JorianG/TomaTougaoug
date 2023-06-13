@@ -81,7 +81,8 @@ public class Paiement extends JFrame {
 				radioSelected, chckbxNewCheckBox.isSelected()));
 	}
 	
-	//todo grisé le bouton si les champs ne sont pas rempis, mémoriser info client, les ressortir, etc... bla bla bla je dors
+	
+	//les ressortir, etc... bla bla bla je dors
 
 	/**
 	 * Create the frame.
@@ -500,7 +501,8 @@ public class Paiement extends JFrame {
 				if (!testFullFill()) {
 					System.out.println("va faire le popup ta mère");
 				} else {
-					ihm.facture.main(null);
+					addClient();
+					ihm.facture.main(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
 				}
 			}
 		});

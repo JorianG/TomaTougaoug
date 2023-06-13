@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
+
+import modele.Client;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
@@ -31,11 +34,11 @@ public class facture extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
+    public static void main(Client client) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    facture frame = new facture();
+                    facture frame = new facture(client);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,7 +50,7 @@ public class facture extends JFrame {
     /**
      * Create the frame.
      */
-    public facture() {
+    public facture(Client client) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 800);
         contentPane = new JPanel();
