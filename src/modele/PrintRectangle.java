@@ -44,24 +44,6 @@ public class PrintRectangle implements Printable {
             retValue = Printable.PAGE_EXISTS;
             break;
          }
-         case 1 : {
-            // Dessin de la seconde page
-            // Récupère la dimension de la zone imprimable
-            double xLeft  = pageFormat.getImageableX();
-            double yTop   = pageFormat.getImageableY();
-            double width  = pageFormat.getImageableWidth();
-            double height = pageFormat.getImageableHeight();
-            
-            // Dessine l'ellipse
-            graphics.setColor(Color.BLACK);
-            graphics.drawOval((int)xLeft,
-                              (int)yTop,
-                              (int)width,
-                              (int)height);
-            // La page est valide
-            retValue = Printable.PAGE_EXISTS;
-            break;
-         }
       }
       return retValue;
       
