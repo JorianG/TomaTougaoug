@@ -90,7 +90,6 @@ public class Paiement extends JFrame {
 	public Paiement() {
 		setTitle("Formulaire de paiement");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Paiement.class.getResource("/images/TomaTougaoug.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 609);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
