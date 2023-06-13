@@ -10,6 +10,8 @@ import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
 
 import modele.Client;
+import modele.EPanier;
+import modele.Tomate;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -25,9 +27,12 @@ import java.awt.Color;
 import javax.swing.JProgressBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class facture extends JFrame {
 
+	private Client client;
+	
     private JPanel contentPane;
     private JTextPane txtpnFacture; // Déclaration de la variable txtpnFacture
 
@@ -46,11 +51,22 @@ public class facture extends JFrame {
             }
         });
     }
+    
+    public String affichagePanierFacture() {
+    	String str = "";
+    	for (int i = 0; i < ihm.Acceuil.listPanier.size(); i++) {
+    		Tomate tomate = ihm.Acceuil.listPanier.get(i).getTomate();
+    		int nb = ihm.Acceuil.listPanier.get(i).getNombre();
+    		str = str+i+1+" : "+tomate.getDésignation()+", quantité commandé : "+nb+" €, Prix TTC : "+tomate.getPrixTTC()+" €, Sous Total : "+ihm.Panier.round(tomate.getPrixTTC()*nb)+" €\nu";
+    	}
+    	return str;
+    }
 
     /**
      * Create the frame.
      */
     public facture(Client client) {
+    	this.client = client;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 800);
         contentPane = new JPanel();
@@ -98,12 +114,13 @@ public class facture extends JFrame {
 
         txtpnFacture = new JTextPane();
         scrollPane.setViewportView(txtpnFacture);
-
+        System.out.println(client);
         genererContenuFacture(txtpnFacture); // Appel de la méthode pour générer le contenu de la facture
     }
 
     private void genererContenuFacture(JTextPane txtpnFacture) {
         // Générer le contenu de la facture en fonction des commandes choisies
+    	System.out.println(client);
 
         // Exemple de contenu de facture
         String contenuFacture = "					SARL Tomatougaoug\n"
@@ -112,7 +129,19 @@ public class facture extends JFrame {
                 + "					31400 Toulouse\n"
         		+ "					France\n"
         		+ "					Tel : 0734256542\n"
-        		+ "					Mail : tomatougaoug@gmail.com\n\n\n";
+        		+ "					Mail : tomatougaoug@gmail.com\n\n\n"
+			+ "Information Client :\n"
+			+ ""+client.getNom()+" "+client.getPrenom()+"\n"
+			+ ""+client.getAdresse1()+"\n"
+			+ ""+client.getAdresse2()+"\n"
+			+ "téléphone : "+client.getTelephone()+"\n"
+			+ "email : "+client.getEmail()+"\n"
+			+ "Moyen de paiement par "+client.getPaiement()+"\n\n\n" // todo refaire getPaiement
+			+ "Votre Commande : \n\n"
+			+ ""+affichagePanierFacture()+"\n\n"
+			+ "Votre commande	     :	"+ihm.Panier.valPanier+" €\n"
+			+ "Expédition Forfait France :  4.5 €\n"
+			+ "Prix Total TTC	     :  "+(ihm.Panier.valPanier+4.5)+" €";
 
         txtpnFacture.setText(contenuFacture); // Afficher le contenu de la facture dans le JTextPane
     }
