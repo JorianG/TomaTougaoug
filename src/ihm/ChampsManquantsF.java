@@ -37,7 +37,6 @@ public class ChampsManquantsF extends JFrame {
 	 * Create the frame.
 	 */
 	public ChampsManquantsF() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
