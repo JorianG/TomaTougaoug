@@ -2,6 +2,7 @@ package modele;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -28,7 +29,17 @@ public class PrintRectangle implements Printable {
             
             // Dessine le rectangle
             graphics.setColor(Color.BLACK);
-            graphics.drawString(facture, (int) xLeft, (int) yTop+10);
+            int yOffset = 40;
+            String line = "";
+            for (int i = 0; i < facture.length(); i++) {
+            	if (facture.charAt(i) != '\n') {
+            		line = line + facture.charAt(i); 
+            	} else {
+            		graphics.drawString(line, (int) xLeft+25, yOffset);
+            		line = "";
+            		yOffset += 10;
+            	}
+            }
             // La page est valide
             retValue = Printable.PAGE_EXISTS;
             break;
@@ -53,6 +64,7 @@ public class PrintRectangle implements Printable {
          }
       }
       return retValue;
+      
    }
    
 }
