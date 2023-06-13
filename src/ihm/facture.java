@@ -167,7 +167,7 @@ public class facture extends JFrame {
 			+ ""+affichagePanierFacture()+"\n\n"
 			+ "Votre commande               :  "+ihm.Panier.valPanier+" €\n"
 			+ "Expédition Forfait France :  4.5 €\n"
-			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Panier.valPanier+4.5)))+" €";
+			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Panier.valPanier+4.5)))+" €\n";
 
         txtpnFacture.setText(contenuFacture); // Afficher le contenu de la facture dans le JTextPane
     }
