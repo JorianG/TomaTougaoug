@@ -112,7 +112,7 @@ public class Paiement extends JFrame {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nom :");
+		JLabel lblNewLabel_1 = new JLabel("*Nom :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -146,7 +146,7 @@ public class Paiement extends JFrame {
 		gbc_label_1.gridy = 0;
 		panel.add(label_1, gbc_label_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Prénom :");
+		JLabel lblNewLabel_1_1 = new JLabel("*Prénom :");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1_1.fill = GridBagConstraints.BOTH;
@@ -180,7 +180,7 @@ public class Paiement extends JFrame {
 		gbc_label_3.gridy = 1;
 		panel.add(label_3, gbc_label_3);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Adresse 1 :");
+		JLabel lblNewLabel_1_2 = new JLabel("*Adresse 1 :");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_2 = new GridBagConstraints();
 		gbc_lblNewLabel_1_2.fill = GridBagConstraints.BOTH;
@@ -249,7 +249,7 @@ public class Paiement extends JFrame {
 		gbc_label_7.gridy = 3;
 		panel.add(label_7, gbc_label_7);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Code Postal :");
+		JLabel lblNewLabel_1_4 = new JLabel("*Code Postal :");
 		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_4 = new GridBagConstraints();
 		gbc_lblNewLabel_1_4.fill = GridBagConstraints.BOTH;
@@ -283,7 +283,7 @@ public class Paiement extends JFrame {
 		gbc_label_9.gridy = 4;
 		panel.add(label_9, gbc_label_9);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("Ville :");
+		JLabel lblNewLabel_1_5 = new JLabel("*Ville :");
 		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_5 = new GridBagConstraints();
 		gbc_lblNewLabel_1_5.fill = GridBagConstraints.BOTH;
@@ -317,7 +317,7 @@ public class Paiement extends JFrame {
 		gbc_label_11.gridy = 5;
 		panel.add(label_11, gbc_label_11);
 		
-		JLabel lblNewLabel_1_6 = new JLabel("Téléphone :");
+		JLabel lblNewLabel_1_6 = new JLabel("*Téléphone :");
 		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_6 = new GridBagConstraints();
 		gbc_lblNewLabel_1_6.fill = GridBagConstraints.BOTH;
@@ -351,7 +351,7 @@ public class Paiement extends JFrame {
 		gbc_label_13.gridy = 6;
 		panel.add(label_13, gbc_label_13);
 		
-		JLabel lblNewLabel_1_7 = new JLabel("Email :");
+		JLabel lblNewLabel_1_7 = new JLabel("*Email :");
 		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblNewLabel_1_7 = new GridBagConstraints();
 		gbc_lblNewLabel_1_7.fill = GridBagConstraints.BOTH;
@@ -498,7 +498,7 @@ public class Paiement extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!testFullFill()) {
-					System.out.println("va faire le popup ta mère");
+					ihm.ChampsManquantsF.main(null);
 				} else {
 					addClient();
 					System.out.println(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
