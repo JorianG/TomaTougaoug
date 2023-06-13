@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ChampsManquantsF extends JFrame {
 
@@ -60,6 +62,12 @@ public class ChampsManquantsF extends JFrame {
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("OK");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		panel_1.add(btnNewButton);
 	}
 
