@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
+import java.awt.Component;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -15,6 +17,8 @@ import java.awt.Rectangle;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
+
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import modele.EPanier;
@@ -69,6 +73,27 @@ public class Panier extends JFrame {
 		}
 	}
 	
+	private class ImageRender extends DefaultTableCellRenderer {
+
+		/**
+		 * 
+		 */
+		
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			// TODO Auto-generated method stub
+			String photoName = "/images/Tomates40x40/"+ value.toString()+".jpg";
+			JLabel lab = new JLabel();
+			lab.setText("");
+			//System.out.println(photoName);
+			lab.setIcon( new ImageIcon(Acceuil.class.getResource(photoName)));
+				
+			
+			return lab;
+		}
+		
+	}
 	public static void recalcul() {
 		valPanier = 0;
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
@@ -242,6 +267,8 @@ public class Panier extends JFrame {
 		table = new JTable();
 		table.setModel(modeleTable);
 		table.setEnabled(true);
+		table.setRowHeight(40);
+		table.getColumnModel().getColumn(0).setCellRenderer(new ImageRender());
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setViewportView(table);
 		
