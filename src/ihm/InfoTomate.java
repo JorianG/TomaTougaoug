@@ -27,6 +27,8 @@ import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class InfoTomate extends JFrame {
 
@@ -72,18 +74,39 @@ public class InfoTomate extends JFrame {
 		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new GridLayout(4, 1, 150, 0));
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{90, 0};
+		gbl_panel.rowHeights = new int[] {50, 92, 50, 92, 0};
+		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		panel.add(lblNewLabel_1);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JLabel Image = new JLabel("");
 		Image.setIcon(new ImageIcon(InfoTomate.class.getResource("/images/Tomates200x200/"+ tomate.getNomImage() + ".jpg")));
 		
-		panel.add(Image);
+		GridBagConstraints gbc_Image = new GridBagConstraints();
+		gbc_Image.fill = GridBagConstraints.BOTH;
+		gbc_Image.insets = new Insets(0, 0, 5, 0);
+		gbc_Image.gridx = 0;
+		gbc_Image.gridy = 1;
+		panel.add(Image, gbc_Image);
 		
 		JLabel lblapparantée = new JLabel("Tomate apparentée");
-		panel.add(lblapparantée);
+		GridBagConstraints gbc_lblapparantée = new GridBagConstraints();
+		gbc_lblapparantée.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblapparantée.insets = new Insets(0, 0, 5, 0);
+		gbc_lblapparantée.gridx = 0;
+		gbc_lblapparantée.gridy = 2;
+		panel.add(lblapparantée, gbc_lblapparantée);
 		
 		JList list = new JList();
 		list.addMouseListener(new MouseAdapter() {
@@ -105,7 +128,11 @@ public class InfoTomate extends JFrame {
 			}
 		});
 		list.setVisibleRowCount(tomate.getTomatesApparentées().size());
-		panel.add(list);
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.gridx = 0;
+		gbc_list.gridy = 3;
+		panel.add(list, gbc_list);
 
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
@@ -177,10 +204,6 @@ public class InfoTomate extends JFrame {
 		panel_1.add(Center_container, BorderLayout.CENTER);
 		Center_container.setLayout(new BorderLayout(0, 0));
 		
-		JTextPane desc = new JTextPane();
-		desc.setText(tomate.getDescription());
-		Center_container.add(desc);
-		
 		JPanel south = new JPanel();
 		Center_container.add(south, BorderLayout.SOUTH);
 		south.setLayout(new GridLayout(3, 2, 20, 0));
@@ -188,6 +211,29 @@ public class InfoTomate extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setPreferredSize(new Dimension(30, 10));
 		Center_container.add(panel_2, BorderLayout.EAST);
+		
+		JPanel panel_3 = new JPanel();
+		Center_container.add(panel_3, BorderLayout.CENTER);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane desc = new JTextPane();
+		desc.setText(tomate.getDescription());
+		panel_3.add(desc);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setPreferredSize(new Dimension(10, 60));
+		panel_3.add(panel_4, BorderLayout.SOUTH);
+		panel_4.setLayout(new GridLayout(3, 1, 40, 7));
+		
+		JLabel lblNewLabel_4 = new JLabel(tomate.getSousTitre());
+		panel_4.add(lblNewLabel_4);
+		JLabel Prix = new JLabel("Prix : "+tomate.getPrixTTC()+ "€ pour "+ tomate.getNombreDeGraines()+" graines");
+		panel_4.add(Prix);
+		
+		JLabel Quantité = new JLabel();
+		panel_4.add(Quantité);
+		
+
 		
 		if (tomate.isDisponible()) {
 			lblNewLabel_1.setText("En Stock");
