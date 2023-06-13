@@ -502,6 +502,7 @@ public class Paiement extends JFrame {
 					System.out.println("va faire le popup ta mère");
 				} else {
 					addClient();
+					System.out.println(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
 					ihm.facture.main(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
 				}
 			}
