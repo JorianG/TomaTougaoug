@@ -63,8 +63,14 @@ public class Client {
 		return email;
 	}
 
-	public int getPaiement() {
-		return paiement;
+	public String getPaiement() {
+		if (paiement == 0) {
+			return "Carte de crédit";
+		} else if (paiement == 1) {
+			return "Paypal";
+		} else {
+			return "Chèques";
+		}
 	}
 
 	public boolean isNewsletter() {
