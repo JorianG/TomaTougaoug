@@ -177,8 +177,8 @@ public class Panier extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (btnNewButton_1.isEnabled()) {
+					ihm.Paiement.main(null);
 					dispose();
-					//TODO paiement
 				}
 			}
 		});
