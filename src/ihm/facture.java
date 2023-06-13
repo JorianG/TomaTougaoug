@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import modele.Client;
 import modele.EPanier;
+import modele.PrintRectangle;
 import modele.Tomate;
 
 import javax.swing.JScrollPane;
@@ -27,14 +28,18 @@ import java.awt.Color;
 import javax.swing.JProgressBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class facture extends JFrame {
 
 	private Client client;
 	
     private JPanel contentPane;
-    private JTextPane txtpnFacture; // Déclaration de la variable txtpnFacture
+    private static JTextPane txtpnFacture; // Déclaration de la variable txtpnFacture
 
     /**
      * Launch the application.
@@ -57,17 +62,33 @@ public class facture extends JFrame {
     	for (int i = 0; i < ihm.Acceuil.listPanier.size(); i++) {
     		Tomate tomate = ihm.Acceuil.listPanier.get(i).getTomate();
     		int nb = ihm.Acceuil.listPanier.get(i).getNombre();
-    		str = str+i+1+" : "+tomate.getDésignation()+", quantité commandé : "+nb+" €, Prix TTC : "+tomate.getPrixTTC()+" €, Sous Total : "+ihm.Panier.round(tomate.getPrixTTC()*nb)+" €\nu";
+    		str = str+""+(i+1)+""+" : "+tomate.getDésignation()+", quantité commandé : "+nb+" €, Prix TTC : "+tomate.getPrixTTC()+" €, Sous Total : "+ihm.Panier.round(tomate.getPrixTTC()*nb)+" €\n";
     	}
     	return str;
     }
 
+    
+    public static void impression() {
+        // Récupère un PrinterJob
+        PrinterJob job = PrinterJob.getPrinterJob();
+        // Définit son contenu à imprimer
+        job.setPrintable(new PrintRectangle(txtpnFacture.getText()));
+        // Affiche une boîte de choix d'imprimante
+        if (job.printDialog()){
+           try {
+              // Effectue l'impression
+              job.print();
+           } catch (PrinterException ex) {
+              ex.printStackTrace();
+           }
+        }
+    }
+    
     /**
      * Create the frame.
      */
     public facture(Client client) {
     	this.client = client;
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 800);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,6 +113,12 @@ public class facture extends JFrame {
         });
 
         JButton imprimerButton = new JButton("Imprimer");
+        imprimerButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		impression();
+        	}
+        });
         panel.add(imprimerButton);
         imprimerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -120,7 +147,6 @@ public class facture extends JFrame {
 
     private void genererContenuFacture(JTextPane txtpnFacture) {
         // Générer le contenu de la facture en fonction des commandes choisies
-    	System.out.println(client);
 
         // Exemple de contenu de facture
         String contenuFacture = "					SARL Tomatougaoug\n"
@@ -139,9 +165,9 @@ public class facture extends JFrame {
 			+ "Moyen de paiement par "+client.getPaiement()+"\n\n\n" // todo refaire getPaiement
 			+ "Votre Commande : \n\n"
 			+ ""+affichagePanierFacture()+"\n\n"
-			+ "Votre commande	     :	"+ihm.Panier.valPanier+" €\n"
+			+ "Votre commande               :  "+ihm.Panier.valPanier+" €\n"
 			+ "Expédition Forfait France :  4.5 €\n"
-			+ "Prix Total TTC	     :  "+(ihm.Panier.valPanier+4.5)+" €";
+			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Panier.valPanier+4.5)))+" €";
 
         txtpnFacture.setText(contenuFacture); // Afficher le contenu de la facture dans le JTextPane
     }
