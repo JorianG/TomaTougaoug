@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modele.Client;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -25,19 +28,26 @@ import javax.swing.JCheckBox;
 import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Paiement extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private static JPanel contentPane;
+	private static JTextField textField;
+	private static JTextField textField_1;
+	private static JTextField textField_2;
+	private static JTextField textField_3;
+	private static JTextField textField_4;
+	private static JTextField textField_5;
+	private static JTextField textField_6;
+	private static JTextField textField_7;
 	private static List<JTextField> listField;
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
+	private JRadioButton rdbtnNewRadioButton_2;
+	public static int radioSelected;
+	public static JCheckBox chckbxNewCheckBox;
 
 	/**
 	 * Launch the application.
@@ -57,12 +67,20 @@ public class Paiement extends JFrame {
 	
 	public static boolean testFullFill() {
 		for (JTextField tf: listField) {
-			if (tf.getText() == "" && tf.getName() != "Adresse2") {
+			System.out.println(tf.getText().isEmpty()+" bal "+tf.getName());
+			if (tf.getText().isEmpty() && tf.getName() != "Adresse2") {
 				return false;
 			}
 		}
 		return true;
 	}
+	
+	public static void addClient() {
+		ihm.Acceuil.bdTomates.getLesClients().add(new Client(textField.getText(), textField_1.getText(), textField_2.getText(), 
+				textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textField_7.getText(),
+				radioSelected, chckbxNewCheckBox.isSelected()));
+	}
+	
 	//todo grisé le bouton si les champs ne sont pas rempis, mémoriser info client, les ressortir, etc... bla bla bla je dors
 
 	/**
@@ -396,18 +414,45 @@ public class Paiement extends JFrame {
 		panel_4.setBackground(new Color(192, 192, 192));
 		mode_paiement.add(panel_4, BorderLayout.CENTER);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
+		rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
+		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnNewRadioButton.setSelected(true);
+				rdbtnNewRadioButton_1.setSelected(false);
+				rdbtnNewRadioButton_2.setSelected(false);
+				radioSelected = 0;
+			}
+		});
 		rdbtnNewRadioButton.setSelected(true);
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Paypal");
+		rdbtnNewRadioButton_1 = new JRadioButton("Paypal");
+		rdbtnNewRadioButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnNewRadioButton.setSelected(false);
+				rdbtnNewRadioButton_1.setSelected(true);
+				rdbtnNewRadioButton_2.setSelected(false);
+				radioSelected = 1;
+			}
+		});
 		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton_1.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Paiement par chèque");
+		rdbtnNewRadioButton_2 = new JRadioButton("Paiement par chèque");
+		rdbtnNewRadioButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnNewRadioButton.setSelected(false);
+				rdbtnNewRadioButton_1.setSelected(false);
+				rdbtnNewRadioButton_2.setSelected(true);
+				radioSelected = 2;
+			}
+		});
 		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton_2.setBackground(new Color(192, 192, 192));
 		panel_4.add(rdbtnNewRadioButton_2);
@@ -439,7 +484,7 @@ public class Paiement extends JFrame {
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblNewLabel_3, BorderLayout.CENTER);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("S'abonner à la newsletter");
+		chckbxNewCheckBox = new JCheckBox("S'abonner à la newsletter");
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setBackground(new Color(192, 192, 192));
 		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
@@ -449,6 +494,16 @@ public class Paiement extends JFrame {
 		news.add(panel_3, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Facture");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!testFullFill()) {
+					System.out.println("va faire le popup ta mère");
+				} else {
+					ihm.facture.main(null);
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btnNewButton.setIcon(new ImageIcon(Paiement.class.getResource("/images/panier.png")));
 		panel_3.add(btnNewButton);
