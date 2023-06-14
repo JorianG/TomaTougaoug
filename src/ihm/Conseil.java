@@ -76,7 +76,7 @@ public class Conseil extends JFrame {
 		txtpnconseilsDeCulturern.setEditable(false);
 		txtpnconseilsDeCulturern.setForeground(new Color(0, 128, 0));
 		txtpnconseilsDeCulturern.setFont(new Font("Brush Script MT", Font.PLAIN, 25));
-		txtpnconseilsDeCulturern.setText(ihm.Acceuil.bdTomates.CONSEILS_DE_CULTURE_TITRE);
+		txtpnconseilsDeCulturern.setText(ihm.Accueil.bdTomates.CONSEILS_DE_CULTURE_TITRE);
 		titre.add(txtpnconseilsDeCulturern, BorderLayout.NORTH);
 		
 		
@@ -87,7 +87,7 @@ public class Conseil extends JFrame {
 		
 		JTextPane txtpnA = new JTextPane();
 		txtpnA.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtpnA.setText(ihm.Acceuil.bdTomates.CONSEILS_DE_CULTURE);
+		txtpnA.setText(ihm.Accueil.bdTomates.CONSEILS_DE_CULTURE);
 
 		scrollPane.setViewportView(txtpnA);
 		

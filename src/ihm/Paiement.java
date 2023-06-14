@@ -75,7 +75,7 @@ public class Paiement extends JFrame {
 	}
 	
 	public static void addClient() {
-		ihm.Acceuil.bdTomates.getLesClients().add(new Client(textField.getText(), textField_1.getText(), textField_2.getText(), 
+		ihm.Accueil.bdTomates.getLesClients().add(new Client(textField.getText(), textField_1.getText(), textField_2.getText(), 
 				textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textField_7.getText(),
 				radioSelected, chckbxNewCheckBox.isSelected()));
 	}
@@ -500,7 +500,7 @@ public class Paiement extends JFrame {
 					ihm.ChampsManquantsF.main(null);
 				} else {
 					addClient();
-					ihm.facture.main(ihm.Acceuil.bdTomates.getLesClients().get(ihm.Acceuil.bdTomates.getLesClients().size()-1));
+					ihm.facture.main(ihm.Accueil.bdTomates.getLesClients().get(ihm.Accueil.bdTomates.getLesClients().size()-1));
 				}
 			}
 		});

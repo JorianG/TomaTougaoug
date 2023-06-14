@@ -59,9 +59,9 @@ public class facture extends JFrame {
     
     public String affichagePanierFacture() {
     	String str = "";
-    	for (int i = 0; i < ihm.Acceuil.listPanier.taille(); i++) {
-    		Tomate tomate = ihm.Acceuil.listPanier.getPanier().get(i).getTomate();
-    		int nb = ihm.Acceuil.listPanier.getPanier().get(i).getNombre();
+    	for (int i = 0; i < ihm.Accueil.listPanier.taille(); i++) {
+    		Tomate tomate = ihm.Accueil.listPanier.getPanier().get(i).getTomate();
+    		int nb = ihm.Accueil.listPanier.getPanier().get(i).getNombre();
     		str = str+""+(i+1)+""+" : "+tomate.getDésignation()+", quantité commandé : "+nb+" €, Prix TTC : "+tomate.getPrixTTC()+" €, Sous Total : "+ihm.Panier.round(tomate.getPrixTTC()*nb)+" €\n";
     	}
     	return str;
@@ -166,9 +166,9 @@ public class facture extends JFrame {
     			+ "Moyen de paiement par "+client.getPaiement()+"\n\n\n"
     			+ "Votre Commande : \n\n"
     			+ ""+affichagePanierFacture()+"\n\n"
-    			+ "Votre commande               :  "+ihm.Acceuil.listPanier.getValPanier()+" €\n"
+    			+ "Votre commande               :  "+ihm.Accueil.listPanier.getValPanier()+" €\n"
     			+ "Expédition Forfait France :  4.5 €\n"
-    			+ "Prix Total TTC                     :  "+ihm.Acceuil.listPanier.getValTotal()+" €\n";
+    			+ "Prix Total TTC                     :  "+ihm.Accueil.listPanier.getValTotal()+" €\n";
     	} else {
     		contenuFacture = "					SARL Tomatougaoug\n"
                     + "					Vente de graines de tomates\n"
@@ -186,9 +186,9 @@ public class facture extends JFrame {
     			+ "Moyen de paiement par "+client.getPaiement()+"\n\n\n"
     			+ "Votre Commande : \n\n"
     			+ ""+affichagePanierFacture()+"\n\n"
-    			+ "Votre commande               :  "+ihm.Acceuil.listPanier.getValPanier()+" €\n"
+    			+ "Votre commande               :  "+ihm.Accueil.listPanier.getValPanier()+" €\n"
     			+ "Expédition Forfait France :  4.5 €\n"
-    			+ "Prix Total TTC                     :  "+ihm.Acceuil.listPanier.getValTotal()+" €\n";
+    			+ "Prix Total TTC                     :  "+ihm.Accueil.listPanier.getValTotal()+" €\n";
     	}
         
 

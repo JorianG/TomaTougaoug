@@ -42,7 +42,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
-public class Acceuil extends JFrame {
+@SuppressWarnings("serial")
+public class Accueil extends JFrame {
 	
 	
 	private JPanel contentPane;
@@ -64,7 +65,7 @@ public class Acceuil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Acceuil frame = new Acceuil();
+					Accueil frame = new Accueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -90,7 +91,7 @@ public class Acceuil extends JFrame {
 			JLabel lab = new JLabel();
 			lab.setText("");
 			//System.out.println(photoName);
-			lab.setIcon( new ImageIcon(Acceuil.class.getResource(photoName)));
+			lab.setIcon( new ImageIcon(Accueil.class.getResource(photoName)));
 				
 			
 			return lab;
@@ -167,11 +168,11 @@ public class Acceuil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Acceuil() {
+	public Accueil() {
 	
 		this.listPanier = new MPanier();
 	
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Acceuil.class.getResource("/images/TomaTougaoug.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/images/TomaTougaoug.png")));
 		setTitle("TomaTougaoug");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 80, 600, 800 );
@@ -247,7 +248,7 @@ public class Acceuil extends JFrame {
 		contentPane.add(header, BorderLayout.NORTH);
 		
 		JLabel titre = new JLabel("Commandez vos tomates");
-		titre.setIcon(new ImageIcon(Acceuil.class.getResource("/images/TomaTougaoug.png")));
+		titre.setIcon(new ImageIcon(Accueil.class.getResource("/images/TomaTougaoug.png")));
 		titre.setHorizontalAlignment(SwingConstants.LEFT);
 		titre.setForeground(Color.GREEN);
 		titre.setFont(new Font("Lucida Calligraphy", Font.PLAIN, 23));
@@ -270,7 +271,7 @@ public class Acceuil extends JFrame {
 		header.add(panier);
 		
 		JLabel txtPanier = new JLabel("Panier");
-		txtPanier.setIcon(new ImageIcon(Acceuil.class.getResource("/images/panier.png")));
+		txtPanier.setIcon(new ImageIcon(Accueil.class.getResource("/images/panier.png")));
 		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panier.add(txtPanier);
 		

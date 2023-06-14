@@ -113,7 +113,7 @@ public class InfoTomate extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				    ihm.InfoTomate.main(ihm.Acceuil.bdTomates.getTomate((String) list.getSelectedValue()));
+				    ihm.InfoTomate.main(ihm.Accueil.bdTomates.getTomate((String) list.getSelectedValue()));
 				    dispose();
 				  }
 			}
@@ -177,18 +177,18 @@ public class InfoTomate extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				boolean modif = false;
-				for (EPanier article: ihm.Acceuil.listPanier.getPanier()) {
+				for (EPanier article: ihm.Accueil.listPanier.getPanier()) {
 					if (article.getTomate().getDésignation() == tomate.getDésignation()) {
-						ihm.Acceuil.listPanier.modifierAjoutExistant(tomate.getDésignation(), (int) spinner.getValue());
-						ihm.Acceuil.listPanier.calcValPanier();
-						ihm.Acceuil.eurPanier.setText(ihm.Acceuil.listPanier.getValPanier()+"€");
+						ihm.Accueil.listPanier.modifierAjoutExistant(tomate.getDésignation(), (int) spinner.getValue());
+						ihm.Accueil.listPanier.calcValPanier();
+						ihm.Accueil.eurPanier.setText(ihm.Accueil.listPanier.getValPanier()+"€");
 						modif = true;
 					}
 				}
 				if (!modif) {
-					ihm.Acceuil.listPanier.ajouter(tomate, (int) spinner.getValue());
-					ihm.Acceuil.listPanier.calcValPanier();
-					ihm.Acceuil.eurPanier.setText(ihm.Acceuil.listPanier.getValPanier()+"€");
+					ihm.Accueil.listPanier.ajouter(tomate, (int) spinner.getValue());
+					ihm.Accueil.listPanier.calcValPanier();
+					ihm.Accueil.eurPanier.setText(ihm.Accueil.listPanier.getValPanier()+"€");
 				}
 				dispose();
 			}

@@ -60,7 +60,7 @@ public class Panier extends JFrame {
 	
 	public static void fillTable() {
 		modeleTable.setRowCount(0);
-		for (EPanier t: ihm.Acceuil.listPanier.getPanier()) {
+		for (EPanier t: ihm.Accueil.listPanier.getPanier()) {
 			modeleTable.addRow(new Object[] {t.getTomate().getNomImage(), t.getTomate().getDésignation(), (float) t.getNombre(), t.getTomate().getPrixTTC(), round((float) (t.getNombre()*t.getTomate().getPrixTTC()))});
 		}
 	}
@@ -80,7 +80,7 @@ public class Panier extends JFrame {
 			JLabel lab = new JLabel();
 			lab.setText("");
 			//System.out.println(photoName);
-			lab.setIcon( new ImageIcon(Acceuil.class.getResource(photoName)));
+			lab.setIcon( new ImageIcon(Accueil.class.getResource(photoName)));
 				
 			
 			return lab;
@@ -88,11 +88,11 @@ public class Panier extends JFrame {
 		
 	}
 	public static void recalcul() {
-		ihm.Acceuil.listPanier.setValPanier(0F);
+		ihm.Accueil.listPanier.setValPanier(0F);
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
 			if (modeleTable.getValueAt(i, 2) instanceof String) {
 				float val = (float) Integer.parseInt((String) modeleTable.getValueAt(i, 2)) * (float) modeleTable.getValueAt(i, 3);
-				ihm.Acceuil.listPanier.addValPanier(val);
+				ihm.Accueil.listPanier.addValPanier(val);
 				Object[] data = new Object[] {
 						modeleTable.getValueAt(i, 0),
 						modeleTable.getValueAt(i, 1),
@@ -105,7 +105,7 @@ public class Panier extends JFrame {
 				updateListPanier(); //TODO
 			} else {
 				float val = (float) modeleTable.getValueAt(i, 2) * (float) modeleTable.getValueAt(i, 3);
-				ihm.Acceuil.listPanier.addValPanier(val);
+				ihm.Accueil.listPanier.addValPanier(val);
 				Object[] data = new Object[] {
 						modeleTable.getValueAt(i, 0),
 						modeleTable.getValueAt(i, 1),
@@ -117,27 +117,27 @@ public class Panier extends JFrame {
 				modeleTable.insertRow(i, data);	
 			}	
 		}
-		textFieldST.setText(""+ihm.Acceuil.listPanier.getValPanier()+"€");
-		textFieldTotal.setText(""+(ihm.Acceuil.listPanier.getValTotal())+"€");
+		textFieldST.setText(""+ihm.Accueil.listPanier.getValPanier()+"€");
+		textFieldTotal.setText(""+(ihm.Accueil.listPanier.getValTotal())+"€");
 		
 	}
 	
 	
 	public static void updateListPanier() { 
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
-			for (EPanier article: ihm.Acceuil.listPanier.getPanier()) {
+			for (EPanier article: ihm.Accueil.listPanier.getPanier()) {
 				if (article.getTomate().getDésignation() == modeleTable.getValueAt(i, 1)) {
-					ihm.Acceuil.listPanier.modifierSaisie(article.getTomate().getDésignation(), Integer.parseInt((String) modeleTable.getValueAt(i, 2)));
+					ihm.Accueil.listPanier.modifierSaisie(article.getTomate().getDésignation(), Integer.parseInt((String) modeleTable.getValueAt(i, 2)));
 				}
 			}
 		}
 	}
 
 	public static void viderTable() {
-		ihm.Acceuil.listPanier.supprimer(); 
+		ihm.Accueil.listPanier.supprimer(); 
 		modeleTable.setRowCount(0);
 		recalcul();
-		ihm.Acceuil.eurPanier.setText("0.0€");
+		ihm.Accueil.eurPanier.setText("0.0€");
 	}
 	
 	/**
