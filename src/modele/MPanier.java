@@ -5,9 +5,11 @@ import java.util.List;
 
 public class MPanier {
 	private List<EPanier> panier;
+	private float valPanier;
 	
 	public MPanier() {
 		this.panier = new LinkedList<EPanier>();
+		this.valPanier = 0F;
 	}
 	
 	public void ajouter(Tomate tomate, int nombre) {
@@ -43,5 +45,27 @@ public class MPanier {
 	
 	public List<EPanier> getPanier() {
 		return this.panier;
+	}
+	
+	public void addValPanier(float nombre) {
+		this.valPanier += nombre;
+	}
+	
+	public void setValPanier(float nombre) {
+		this.valPanier = nombre;
+	}
+	
+	public float getValPanier() {
+		return round(this.valPanier);
+	}
+	
+	public void calcValPanier() {
+		valPanier = 0F; // TODO
+		for (EPanier e: this.panier) {
+			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
+		}
+	 }
+	private float round(float val) {
+		return (float) Math.round(val * 100) / 100;
 	}
 }
