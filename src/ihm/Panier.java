@@ -26,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Panier extends JFrame {
@@ -185,6 +186,8 @@ public class Panier extends JFrame {
 	 */
 
 	public Panier() {
+		setTitle("Panier");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Panier.class.getResource("/images/TomaTougaoug.png")));
 		setBounds(100, 100, 720, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

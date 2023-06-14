@@ -23,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Conseil extends JFrame {
@@ -51,6 +52,8 @@ public class Conseil extends JFrame {
 	 * Create the frame.
 	 */
 	public Conseil() {
+		setTitle("Conseil de culture");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Conseil.class.getResource("/images/TomaTougaoug.png")));
 		
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();

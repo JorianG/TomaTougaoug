@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class ChampsManquantsF extends JFrame {
@@ -38,6 +39,8 @@ public class ChampsManquantsF extends JFrame {
 	 * Create the frame.
 	 */
 	public ChampsManquantsF() {
+		setTitle("Champs manquants");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ChampsManquantsF.class.getResource("/images/TomaTougaoug.png")));
 		setBounds(100, 100, 300, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

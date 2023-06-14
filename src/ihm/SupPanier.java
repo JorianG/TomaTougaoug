@@ -14,6 +14,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class SupPanier extends JFrame {
@@ -41,6 +42,8 @@ public class SupPanier extends JFrame {
 	 * Create the frame.
 	 */
 	public SupPanier() {
+		setTitle("Supprimer le panier");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SupPanier.class.getResource("/images/TomaTougaoug.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 150);
 		contentPane = new JPanel();

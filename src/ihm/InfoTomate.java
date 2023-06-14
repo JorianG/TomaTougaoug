@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class InfoTomate extends JFrame {
@@ -59,6 +60,8 @@ public class InfoTomate extends JFrame {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public InfoTomate(Tomate tomate) {
+		setTitle(tomate.getDésignation());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoTomate.class.getResource("/images/TomaTougaoug.png")));
 		
 		setBounds(100, 100, 669, 456);
 		contentPane = new JPanel();

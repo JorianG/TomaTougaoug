@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class PanierVide extends JFrame {
@@ -39,6 +40,8 @@ public class PanierVide extends JFrame {
 	 * Create the frame.
 	 */
 	public PanierVide() {
+		setTitle("Panier vide");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PanierVide.class.getResource("/images/TomaTougaoug.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 250, 150);
 		contentPane = new JPanel();

@@ -24,6 +24,7 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class facture extends JFrame {
@@ -80,6 +81,8 @@ public class facture extends JFrame {
      * Create the frame.
      */
     public facture(Client client) {
+    	setTitle("Facture");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(facture.class.getResource("/images/TomaTougaoug.png")));
     	this.client = client;
         setBounds(100, 100, 600, 800);
         contentPane = new JPanel();
