@@ -24,6 +24,7 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class Conseil extends JFrame {
 
 	private JPanel contentPane;
@@ -91,19 +92,19 @@ public class Conseil extends JFrame {
 
 		scrollPane.setViewportView(txtpnA);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel panelHeader = new JPanel();
+		contentPane.add(panelHeader, BorderLayout.NORTH);
+		panelHeader.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Conseil.class.getResource("/images/TomaTougaoug.png")));
-		panel_1.add(lblNewLabel, BorderLayout.WEST);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(Conseil.class.getResource("/images/TomaTougaoug.png")));
+		panelHeader.add(lblLogo, BorderLayout.WEST);
 		
-		JLabel lblNewLabel_1 = new JLabel("Conseil de Culture");
-		lblNewLabel_1.setForeground(new Color(255, 0, 0));
-		lblNewLabel_1.setFont(new Font("Brush Script MT", Font.PLAIN, 40));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblNewLabel_1, BorderLayout.CENTER);
+		JLabel lblTitre = new JLabel("Conseil de Culture");
+		lblTitre.setForeground(new Color(255, 0, 0));
+		lblTitre.setFont(new Font("Brush Script MT", Font.PLAIN, 40));
+		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
+		panelHeader.add(lblTitre, BorderLayout.CENTER);
 	}
 
 }

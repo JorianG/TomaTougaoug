@@ -1,16 +1,12 @@
 package ihm;
 
 import java.awt.EventQueue;
-import java.awt.Frame;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
 
 import modele.Client;
-import modele.EPanier;
 import modele.PrintRectangle;
 import modele.Tomate;
 
@@ -19,21 +15,17 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JScrollBar;
-import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.JTextPane;
 import java.awt.Color;
-import javax.swing.JProgressBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class facture extends JFrame {
 
 	private Client client;
@@ -96,16 +88,16 @@ public class facture extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        JLabel lblNewLabel = new JLabel("Facture");
-        lblNewLabel.setIcon(new ImageIcon(facture.class.getResource("/images/TomaTougaoug.png")));
-        contentPane.add(lblNewLabel, BorderLayout.NORTH);
+        JLabel lblHeader = new JLabel("Facture");
+        lblHeader.setIcon(new ImageIcon(facture.class.getResource("/images/TomaTougaoug.png")));
+        contentPane.add(lblHeader, BorderLayout.NORTH);
 
-        JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.SOUTH);
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        JPanel panelBouton = new JPanel();
+        contentPane.add(panelBouton, BorderLayout.SOUTH);
+        panelBouton.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
         JButton annulerButton = new JButton("Annuler");
-        panel.add(annulerButton);
+        panelBouton.add(annulerButton);
         annulerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Ferme la fenêtre de facture
@@ -119,25 +111,25 @@ public class facture extends JFrame {
         		impression();
         	}
         });
-        panel.add(imprimerButton);
+        panelBouton.add(imprimerButton);
         imprimerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // impression de la facture
             }
         });
 
-        JPanel panel_1 = new JPanel();
-        contentPane.add(panel_1, BorderLayout.CENTER);
-        panel_1.setLayout(new BorderLayout(0, 0));
+        JPanel panelFacture = new JPanel();
+        contentPane.add(panelFacture, BorderLayout.CENTER);
+        panelFacture.setLayout(new BorderLayout(0, 0));
 
-        JLabel lblNewLabel_1 = new JLabel("Merci de votre visite");
-        lblNewLabel_1.setForeground(Color.RED);
-        panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
+        JLabel lblMerci = new JLabel("Merci de votre visite");
+        lblMerci.setForeground(Color.RED);
+        panelFacture.add(lblMerci, BorderLayout.NORTH);
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        panel_1.add(scrollPane);
+        panelFacture.add(scrollPane);
 
         txtpnFacture = new JTextPane();
         scrollPane.setViewportView(txtpnFacture);

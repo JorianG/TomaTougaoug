@@ -12,10 +12,7 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -31,23 +28,24 @@ import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class Paiement extends JFrame {
 
 	private static JPanel contentPane;
-	private static JTextField textField;
-	private static JTextField textField_1;
-	private static JTextField textField_2;
-	private static JTextField textField_3;
-	private static JTextField textField_4;
-	private static JTextField textField_5;
-	private static JTextField textField_6;
-	private static JTextField textField_7;
+	private static JTextField textFieldNom;
+	private static JTextField textFieldPrenom;
+	private static JTextField textFieldAdresse1;
+	private static JTextField textFieldAdresse2;
+	private static JTextField textFieldCP;
+	private static JTextField textFieldVille;
+	private static JTextField textFieldTel;
+	private static JTextField textFieldMail;
 	private static List<JTextField> listField;
-	private JRadioButton rdbtnNewRadioButton;
-	private JRadioButton rdbtnNewRadioButton_1;
-	private JRadioButton rdbtnNewRadioButton_2;
+	private JRadioButton rdbtnCreditCard;
+	private JRadioButton rdbtnPaypal;
+	private JRadioButton rdbtnCheque;
 	public static int radioSelected;
-	public static JCheckBox chckbxNewCheckBox;
+	public static JCheckBox chckbxNewsletter;
 
 	/**
 	 * Launch the application.
@@ -75,9 +73,9 @@ public class Paiement extends JFrame {
 	}
 	
 	public static void addClient() {
-		ihm.Accueil.bdTomates.getLesClients().add(new Client(textField.getText(), textField_1.getText(), textField_2.getText(), 
-				textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textField_7.getText(),
-				radioSelected, chckbxNewCheckBox.isSelected()));
+		ihm.Accueil.bdTomates.getLesClients().add(new Client(textFieldNom.getText(), textFieldPrenom.getText(), textFieldAdresse1.getText(), 
+				textFieldAdresse2.getText(), textFieldCP.getText(), textFieldVille.getText(), textFieldTel.getText(), textFieldMail.getText(),
+				radioSelected, chckbxNewsletter.isSelected()));
 	}
 	
 	
@@ -111,14 +109,14 @@ public class Paiement extends JFrame {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("*Nom :");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 0;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblNom = new JLabel("*Nom :");
+		lblNom.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblNom = new GridBagConstraints();
+		gbc_lblNom.fill = GridBagConstraints.BOTH;
+		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNom.gridx = 0;
+		gbc_lblNom.gridy = 0;
+		panel.add(lblNom, gbc_lblNom);
 		
 		JLabel label = new JLabel("");
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -128,14 +126,14 @@ public class Paiement extends JFrame {
 		gbc_label.gridy = 0;
 		panel.add(label, gbc_label);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 0;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		textFieldNom = new JTextField();
+		GridBagConstraints gbc_textFieldNom = new GridBagConstraints();
+		gbc_textFieldNom.fill = GridBagConstraints.BOTH;
+		gbc_textFieldNom.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNom.gridx = 2;
+		gbc_textFieldNom.gridy = 0;
+		panel.add(textFieldNom, gbc_textFieldNom);
+		textFieldNom.setColumns(10);
 		
 		JLabel label_1 = new JLabel("");
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
@@ -145,14 +143,14 @@ public class Paiement extends JFrame {
 		gbc_label_1.gridy = 0;
 		panel.add(label_1, gbc_label_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("*Prénom :");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1.gridx = 0;
-		gbc_lblNewLabel_1_1.gridy = 1;
-		panel.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
+		JLabel lblPrenom = new JLabel("*Prénom :");
+		lblPrenom.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
+		gbc_lblPrenom.fill = GridBagConstraints.BOTH;
+		gbc_lblPrenom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPrenom.gridx = 0;
+		gbc_lblPrenom.gridy = 1;
+		panel.add(lblPrenom, gbc_lblPrenom);
 		
 		JLabel label_2 = new JLabel("");
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
@@ -162,14 +160,14 @@ public class Paiement extends JFrame {
 		gbc_label_2.gridy = 1;
 		panel.add(label_2, gbc_label_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.BOTH;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 1;
-		panel.add(textField_1, gbc_textField_1);
+		textFieldPrenom = new JTextField();
+		textFieldPrenom.setColumns(10);
+		GridBagConstraints gbc_textFieldPrenom = new GridBagConstraints();
+		gbc_textFieldPrenom.fill = GridBagConstraints.BOTH;
+		gbc_textFieldPrenom.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldPrenom.gridx = 2;
+		gbc_textFieldPrenom.gridy = 1;
+		panel.add(textFieldPrenom, gbc_textFieldPrenom);
 		
 		JLabel label_3 = new JLabel("");
 		GridBagConstraints gbc_label_3 = new GridBagConstraints();
@@ -179,14 +177,14 @@ public class Paiement extends JFrame {
 		gbc_label_3.gridy = 1;
 		panel.add(label_3, gbc_label_3);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("*Adresse 1 :");
-		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_2 = new GridBagConstraints();
-		gbc_lblNewLabel_1_2.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_2.gridx = 0;
-		gbc_lblNewLabel_1_2.gridy = 2;
-		panel.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
+		JLabel lblAdresse1 = new JLabel("*Adresse 1 :");
+		lblAdresse1.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblAdresse1 = new GridBagConstraints();
+		gbc_lblAdresse1.fill = GridBagConstraints.BOTH;
+		gbc_lblAdresse1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAdresse1.gridx = 0;
+		gbc_lblAdresse1.gridy = 2;
+		panel.add(lblAdresse1, gbc_lblAdresse1);
 		
 		JLabel label_4 = new JLabel("");
 		GridBagConstraints gbc_label_4 = new GridBagConstraints();
@@ -196,14 +194,14 @@ public class Paiement extends JFrame {
 		gbc_label_4.gridy = 2;
 		panel.add(label_4, gbc_label_4);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.fill = GridBagConstraints.BOTH;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.gridx = 2;
-		gbc_textField_2.gridy = 2;
-		panel.add(textField_2, gbc_textField_2);
+		textFieldAdresse1 = new JTextField();
+		textFieldAdresse1.setColumns(10);
+		GridBagConstraints gbc_textFieldAdresse1 = new GridBagConstraints();
+		gbc_textFieldAdresse1.fill = GridBagConstraints.BOTH;
+		gbc_textFieldAdresse1.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAdresse1.gridx = 2;
+		gbc_textFieldAdresse1.gridy = 2;
+		panel.add(textFieldAdresse1, gbc_textFieldAdresse1);
 		
 		JLabel label_5 = new JLabel("");
 		GridBagConstraints gbc_label_5 = new GridBagConstraints();
@@ -213,14 +211,14 @@ public class Paiement extends JFrame {
 		gbc_label_5.gridy = 2;
 		panel.add(label_5, gbc_label_5);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Adresse 2 :");
-		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_3 = new GridBagConstraints();
-		gbc_lblNewLabel_1_3.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_3.gridx = 0;
-		gbc_lblNewLabel_1_3.gridy = 3;
-		panel.add(lblNewLabel_1_3, gbc_lblNewLabel_1_3);
+		JLabel lblAdresse2 = new JLabel("Adresse 2 :");
+		lblAdresse2.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblAdresse2 = new GridBagConstraints();
+		gbc_lblAdresse2.fill = GridBagConstraints.BOTH;
+		gbc_lblAdresse2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAdresse2.gridx = 0;
+		gbc_lblAdresse2.gridy = 3;
+		panel.add(lblAdresse2, gbc_lblAdresse2);
 		
 		JLabel label_6 = new JLabel("");
 		GridBagConstraints gbc_label_6 = new GridBagConstraints();
@@ -230,15 +228,15 @@ public class Paiement extends JFrame {
 		gbc_label_6.gridy = 3;
 		panel.add(label_6, gbc_label_6);
 		
-		textField_3 = new JTextField();
-		textField_3.setName("Adresse2");
-		textField_3.setColumns(10);
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.fill = GridBagConstraints.BOTH;
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.gridx = 2;
-		gbc_textField_3.gridy = 3;
-		panel.add(textField_3, gbc_textField_3);
+		textFieldAdresse2 = new JTextField();
+		textFieldAdresse2.setName("Adresse2");
+		textFieldAdresse2.setColumns(10);
+		GridBagConstraints gbc_textFieldAdresse2 = new GridBagConstraints();
+		gbc_textFieldAdresse2.fill = GridBagConstraints.BOTH;
+		gbc_textFieldAdresse2.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAdresse2.gridx = 2;
+		gbc_textFieldAdresse2.gridy = 3;
+		panel.add(textFieldAdresse2, gbc_textFieldAdresse2);
 		
 		JLabel label_7 = new JLabel("");
 		GridBagConstraints gbc_label_7 = new GridBagConstraints();
@@ -248,14 +246,14 @@ public class Paiement extends JFrame {
 		gbc_label_7.gridy = 3;
 		panel.add(label_7, gbc_label_7);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("*Code Postal :");
-		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_4 = new GridBagConstraints();
-		gbc_lblNewLabel_1_4.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_4.gridx = 0;
-		gbc_lblNewLabel_1_4.gridy = 4;
-		panel.add(lblNewLabel_1_4, gbc_lblNewLabel_1_4);
+		JLabel lblCP = new JLabel("*Code Postal :");
+		lblCP.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblCP = new GridBagConstraints();
+		gbc_lblCP.fill = GridBagConstraints.BOTH;
+		gbc_lblCP.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCP.gridx = 0;
+		gbc_lblCP.gridy = 4;
+		panel.add(lblCP, gbc_lblCP);
 		
 		JLabel label_8 = new JLabel("");
 		GridBagConstraints gbc_label_8 = new GridBagConstraints();
@@ -265,14 +263,14 @@ public class Paiement extends JFrame {
 		gbc_label_8.gridy = 4;
 		panel.add(label_8, gbc_label_8);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.fill = GridBagConstraints.BOTH;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_4.gridx = 2;
-		gbc_textField_4.gridy = 4;
-		panel.add(textField_4, gbc_textField_4);
+		textFieldCP = new JTextField();
+		textFieldCP.setColumns(10);
+		GridBagConstraints gbc_textFieldCP = new GridBagConstraints();
+		gbc_textFieldCP.fill = GridBagConstraints.BOTH;
+		gbc_textFieldCP.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCP.gridx = 2;
+		gbc_textFieldCP.gridy = 4;
+		panel.add(textFieldCP, gbc_textFieldCP);
 		
 		JLabel label_9 = new JLabel("");
 		GridBagConstraints gbc_label_9 = new GridBagConstraints();
@@ -282,14 +280,14 @@ public class Paiement extends JFrame {
 		gbc_label_9.gridy = 4;
 		panel.add(label_9, gbc_label_9);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("*Ville :");
-		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_5 = new GridBagConstraints();
-		gbc_lblNewLabel_1_5.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_5.gridx = 0;
-		gbc_lblNewLabel_1_5.gridy = 5;
-		panel.add(lblNewLabel_1_5, gbc_lblNewLabel_1_5);
+		JLabel lblVille = new JLabel("*Ville :");
+		lblVille.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblVille = new GridBagConstraints();
+		gbc_lblVille.fill = GridBagConstraints.BOTH;
+		gbc_lblVille.insets = new Insets(0, 0, 5, 5);
+		gbc_lblVille.gridx = 0;
+		gbc_lblVille.gridy = 5;
+		panel.add(lblVille, gbc_lblVille);
 		
 		JLabel label_10 = new JLabel("");
 		GridBagConstraints gbc_label_10 = new GridBagConstraints();
@@ -299,14 +297,14 @@ public class Paiement extends JFrame {
 		gbc_label_10.gridy = 5;
 		panel.add(label_10, gbc_label_10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.fill = GridBagConstraints.BOTH;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_5.gridx = 2;
-		gbc_textField_5.gridy = 5;
-		panel.add(textField_5, gbc_textField_5);
+		textFieldVille = new JTextField();
+		textFieldVille.setColumns(10);
+		GridBagConstraints gbc_textFieldVille = new GridBagConstraints();
+		gbc_textFieldVille.fill = GridBagConstraints.BOTH;
+		gbc_textFieldVille.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldVille.gridx = 2;
+		gbc_textFieldVille.gridy = 5;
+		panel.add(textFieldVille, gbc_textFieldVille);
 		
 		JLabel label_11 = new JLabel("");
 		GridBagConstraints gbc_label_11 = new GridBagConstraints();
@@ -316,14 +314,14 @@ public class Paiement extends JFrame {
 		gbc_label_11.gridy = 5;
 		panel.add(label_11, gbc_label_11);
 		
-		JLabel lblNewLabel_1_6 = new JLabel("*Téléphone :");
-		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_6 = new GridBagConstraints();
-		gbc_lblNewLabel_1_6.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_6.gridx = 0;
-		gbc_lblNewLabel_1_6.gridy = 6;
-		panel.add(lblNewLabel_1_6, gbc_lblNewLabel_1_6);
+		JLabel lblTel = new JLabel("*Téléphone :");
+		lblTel.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblTel = new GridBagConstraints();
+		gbc_lblTel.fill = GridBagConstraints.BOTH;
+		gbc_lblTel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTel.gridx = 0;
+		gbc_lblTel.gridy = 6;
+		panel.add(lblTel, gbc_lblTel);
 		
 		JLabel label_12 = new JLabel("");
 		GridBagConstraints gbc_label_12 = new GridBagConstraints();
@@ -333,14 +331,14 @@ public class Paiement extends JFrame {
 		gbc_label_12.gridy = 6;
 		panel.add(label_12, gbc_label_12);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.fill = GridBagConstraints.BOTH;
-		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_6.gridx = 2;
-		gbc_textField_6.gridy = 6;
-		panel.add(textField_6, gbc_textField_6);
+		textFieldTel = new JTextField();
+		textFieldTel.setColumns(10);
+		GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
+		gbc_textFieldTel.fill = GridBagConstraints.BOTH;
+		gbc_textFieldTel.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldTel.gridx = 2;
+		gbc_textFieldTel.gridy = 6;
+		panel.add(textFieldTel, gbc_textFieldTel);
 		
 		JLabel label_13 = new JLabel("");
 		GridBagConstraints gbc_label_13 = new GridBagConstraints();
@@ -350,14 +348,14 @@ public class Paiement extends JFrame {
 		gbc_label_13.gridy = 6;
 		panel.add(label_13, gbc_label_13);
 		
-		JLabel lblNewLabel_1_7 = new JLabel("*Email :");
-		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel_1_7 = new GridBagConstraints();
-		gbc_lblNewLabel_1_7.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1_7.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_1_7.gridx = 0;
-		gbc_lblNewLabel_1_7.gridy = 7;
-		panel.add(lblNewLabel_1_7, gbc_lblNewLabel_1_7);
+		JLabel lblMail = new JLabel("*Email :");
+		lblMail.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblMail = new GridBagConstraints();
+		gbc_lblMail.fill = GridBagConstraints.BOTH;
+		gbc_lblMail.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMail.gridx = 0;
+		gbc_lblMail.gridy = 7;
+		panel.add(lblMail, gbc_lblMail);
 		
 		JLabel label_14 = new JLabel("");
 		GridBagConstraints gbc_label_14 = new GridBagConstraints();
@@ -367,24 +365,24 @@ public class Paiement extends JFrame {
 		gbc_label_14.gridy = 7;
 		panel.add(label_14, gbc_label_14);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
-		gbc_textField_7.fill = GridBagConstraints.BOTH;
-		gbc_textField_7.insets = new Insets(0, 0, 0, 5);
-		gbc_textField_7.gridx = 2;
-		gbc_textField_7.gridy = 7;
-		panel.add(textField_7, gbc_textField_7);
+		textFieldMail = new JTextField();
+		textFieldMail.setColumns(10);
+		GridBagConstraints gbc_textFieldMail = new GridBagConstraints();
+		gbc_textFieldMail.fill = GridBagConstraints.BOTH;
+		gbc_textFieldMail.insets = new Insets(0, 0, 0, 5);
+		gbc_textFieldMail.gridx = 2;
+		gbc_textFieldMail.gridy = 7;
+		panel.add(textFieldMail, gbc_textFieldMail);
 		
 		listField = new LinkedList<JTextField>();
-		listField.add(textField);
-		listField.add(textField_1);
-		listField.add(textField_2);
-		listField.add(textField_3);
-		listField.add(textField_4);
-		listField.add(textField_5);
-		listField.add(textField_6);
-		listField.add(textField_7);
+		listField.add(textFieldNom);
+		listField.add(textFieldPrenom);
+		listField.add(textFieldAdresse1);
+		listField.add(textFieldAdresse2);
+		listField.add(textFieldCP);
+		listField.add(textFieldVille);
+		listField.add(textFieldTel);
+		listField.add(textFieldMail);
 		
 		
 		JLabel label_15 = new JLabel("");
@@ -404,57 +402,57 @@ public class Paiement extends JFrame {
 		panel_1.add(mode_paiement, BorderLayout.NORTH);
 		mode_paiement.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("Mode de paiement");
-		lblNewLabel_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		mode_paiement.add(lblNewLabel_2, BorderLayout.NORTH);
+		JLabel lblPaiement = new JLabel("Mode de paiement");
+		lblPaiement.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblPaiement.setHorizontalAlignment(SwingConstants.CENTER);
+		mode_paiement.add(lblPaiement, BorderLayout.NORTH);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(192, 192, 192));
 		mode_paiement.add(panel_4, BorderLayout.CENTER);
 		
-		rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
-		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+		rdbtnCreditCard = new JRadioButton("Carte de crédit");
+		rdbtnCreditCard.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnNewRadioButton.setSelected(true);
-				rdbtnNewRadioButton_1.setSelected(false);
-				rdbtnNewRadioButton_2.setSelected(false);
+				rdbtnCreditCard.setSelected(true);
+				rdbtnPaypal.setSelected(false);
+				rdbtnCheque.setSelected(false);
 				radioSelected = 0;
 			}
 		});
-		rdbtnNewRadioButton.setSelected(true);
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnNewRadioButton.setBackground(new Color(192, 192, 192));
-		panel_4.add(rdbtnNewRadioButton);
+		rdbtnCreditCard.setSelected(true);
+		rdbtnCreditCard.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnCreditCard.setBackground(new Color(192, 192, 192));
+		panel_4.add(rdbtnCreditCard);
 		
-		rdbtnNewRadioButton_1 = new JRadioButton("Paypal");
-		rdbtnNewRadioButton_1.addMouseListener(new MouseAdapter() {
+		rdbtnPaypal = new JRadioButton("Paypal");
+		rdbtnPaypal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnNewRadioButton.setSelected(false);
-				rdbtnNewRadioButton_1.setSelected(true);
-				rdbtnNewRadioButton_2.setSelected(false);
+				rdbtnCreditCard.setSelected(false);
+				rdbtnPaypal.setSelected(true);
+				rdbtnCheque.setSelected(false);
 				radioSelected = 1;
 			}
 		});
-		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnNewRadioButton_1.setBackground(new Color(192, 192, 192));
-		panel_4.add(rdbtnNewRadioButton_1);
+		rdbtnPaypal.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnPaypal.setBackground(new Color(192, 192, 192));
+		panel_4.add(rdbtnPaypal);
 		
-		rdbtnNewRadioButton_2 = new JRadioButton("Paiement par chèque");
-		rdbtnNewRadioButton_2.addMouseListener(new MouseAdapter() {
+		rdbtnCheque = new JRadioButton("Paiement par chèque");
+		rdbtnCheque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnNewRadioButton.setSelected(false);
-				rdbtnNewRadioButton_1.setSelected(false);
-				rdbtnNewRadioButton_2.setSelected(true);
+				rdbtnCreditCard.setSelected(false);
+				rdbtnPaypal.setSelected(false);
+				rdbtnCheque.setSelected(true);
 				radioSelected = 2;
 			}
 		});
-		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnNewRadioButton_2.setBackground(new Color(192, 192, 192));
-		panel_4.add(rdbtnNewRadioButton_2);
+		rdbtnCheque.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnCheque.setBackground(new Color(192, 192, 192));
+		panel_4.add(rdbtnCheque);
 		
 		JPanel spacer = new JPanel();
 		spacer.setBackground(new Color(240, 240, 240));
@@ -468,32 +466,32 @@ public class Paiement extends JFrame {
 		panel_1.add(news, BorderLayout.SOUTH);
 		news.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(192, 192, 192));
-		panel_2.setPreferredSize(new Dimension(10, 70));
-		news.add(panel_2, BorderLayout.NORTH);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		JPanel panelNewsletter = new JPanel();
+		panelNewsletter.setBackground(new Color(192, 192, 192));
+		panelNewsletter.setPreferredSize(new Dimension(10, 70));
+		news.add(panelNewsletter, BorderLayout.NORTH);
+		panelNewsletter.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Newsletter");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		panel_2.add(lblNewLabel_2_1, BorderLayout.NORTH);
+		JLabel lblNewsletter = new JLabel("Newsletter");
+		lblNewsletter.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewsletter.setFont(new Font("Verdana", Font.PLAIN, 16));
+		panelNewsletter.add(lblNewsletter, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel_3 = new JLabel("Souhaitez vous vous abonner à notre newsletter ?");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_3, BorderLayout.CENTER);
+		JLabel lblTexteNewsletter = new JLabel("Souhaitez vous vous abonner à notre newsletter ?");
+		lblTexteNewsletter.setHorizontalAlignment(SwingConstants.CENTER);
+		panelNewsletter.add(lblTexteNewsletter, BorderLayout.CENTER);
 		
-		chckbxNewCheckBox = new JCheckBox("S'abonner à la newsletter");
-		chckbxNewCheckBox.setSelected(true);
-		chckbxNewCheckBox.setBackground(new Color(192, 192, 192));
-		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(chckbxNewCheckBox, BorderLayout.SOUTH);
+		chckbxNewsletter = new JCheckBox("S'abonner à la newsletter");
+		chckbxNewsletter.setSelected(true);
+		chckbxNewsletter.setBackground(new Color(192, 192, 192));
+		chckbxNewsletter.setHorizontalAlignment(SwingConstants.CENTER);
+		panelNewsletter.add(chckbxNewsletter, BorderLayout.SOUTH);
 		
 		JPanel panel_3 = new JPanel();
 		news.add(panel_3, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("Facture");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnFacture = new JButton("Facture");
+		btnFacture.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!testFullFill()) {
@@ -504,9 +502,9 @@ public class Paiement extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 15));
-		btnNewButton.setIcon(new ImageIcon(Paiement.class.getResource("/images/panier.png")));
-		panel_3.add(btnNewButton);
+		btnFacture.setFont(new Font("Verdana", Font.PLAIN, 15));
+		btnFacture.setIcon(new ImageIcon(Paiement.class.getResource("/images/panier.png")));
+		panel_3.add(btnFacture);
 	}
 
 }

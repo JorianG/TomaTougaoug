@@ -8,13 +8,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class ChampsManquantsF extends JFrame {
 
 	private JPanel contentPane;
@@ -46,29 +45,29 @@ public class ChampsManquantsF extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel panelTexte = new JPanel();
+		contentPane.add(panelTexte, BorderLayout.CENTER);
+		panelTexte.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("Tout les champs ne sont pas complété");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblNewLabel_1);
+		panelTexte.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("Complétez les champ avec *");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblNewLabel);
+		panelTexte.add(lblNewLabel);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		JPanel panelBouton = new JPanel();
+		contentPane.add(panelBouton, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("OK");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnButtonOk = new JButton("OK");
+		btnButtonOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 			}
 		});
-		panel_1.add(btnNewButton);
+		panelBouton.add(btnButtonOk);
 	}
 
 }

@@ -5,10 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
@@ -16,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class PanierVide extends JFrame {
 
 	private JPanel contentPane;
@@ -48,25 +47,25 @@ public class PanierVide extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Votre panier est vide");
-		lblNewLabel.setForeground(new Color(0, 0, 0));
-		lblNewLabel.setBackground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel);
+		JLabel lblPanierVide = new JLabel("Votre panier est vide");
+		lblPanierVide.setForeground(new Color(0, 0, 0));
+		lblPanierVide.setBackground(new Color(255, 255, 255));
+		lblPanierVide.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblPanierVide.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblPanierVide);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		
-		JButton btnNewButton = new JButton("OK");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnOK = new JButton("OK");
+		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setForeground(new Color(0, 128, 0));
-		panel.add(btnNewButton);
+		btnOK.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnOK.setForeground(new Color(0, 128, 0));
+		panel.add(btnOK);
 	}
 }

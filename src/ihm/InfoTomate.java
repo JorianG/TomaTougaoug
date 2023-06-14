@@ -30,6 +30,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+@SuppressWarnings("serial")
 public class InfoTomate extends JFrame {
 
 	private JPanel contentPane;
@@ -56,7 +57,7 @@ public class InfoTomate extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public InfoTomate(Tomate tomate) {
 		
 		setBounds(100, 100, 669, 456);

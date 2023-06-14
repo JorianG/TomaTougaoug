@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class SupPanier extends JFrame {
 
 	private JPanel contentPane;
@@ -48,40 +49,40 @@ public class SupPanier extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Voulez-vous supprimer votre panier?");
-		lblNewLabel.setForeground(new Color(0, 0, 0));
-		lblNewLabel.setBackground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel);
+		JLabel lblSuppression = new JLabel("Voulez-vous supprimer votre panier?");
+		lblSuppression.setForeground(new Color(0, 0, 0));
+		lblSuppression.setBackground(new Color(255, 255, 255));
+		lblSuppression.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSuppression.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblSuppression);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		
-		JButton btnNewButton = new JButton("Oui");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnOui = new JButton("Oui");
+		btnOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ihm.Panier.viderTable();
-				ihm.Panier.btnNewButton_1.setEnabled(false);
+				ihm.Panier.btnValider.setEnabled(false);
 				dispose();
 				
 			}
 		});
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("Annuler");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				suppPanier = false;
 				dispose();
 			}
 		});
-		btnNewButton_1.setForeground(new Color(255, 0, 0));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		panel.add(btnNewButton_1);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setForeground(new Color(0, 128, 0));
-		panel.add(btnNewButton);
+		btnAnnuler.setForeground(new Color(255, 0, 0));
+		btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel.add(btnAnnuler);
+		btnOui.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnOui.setForeground(new Color(0, 128, 0));
+		panel.add(btnOui);
 	}
 }
