@@ -168,7 +168,7 @@ public class facture extends JFrame {
     			+ ""+affichagePanierFacture()+"\n\n"
     			+ "Votre commande               :  "+ihm.Acceuil.listPanier.getValPanier()+" €\n"
     			+ "Expédition Forfait France :  4.5 €\n"
-    			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Acceuil.listPanier.getValPanier()+4.5)))+" €\n";
+    			+ "Prix Total TTC                     :  "+ihm.Acceuil.listPanier.getValTotal()+" €\n";
     	} else {
     		contenuFacture = "					SARL Tomatougaoug\n"
                     + "					Vente de graines de tomates\n"
@@ -188,7 +188,7 @@ public class facture extends JFrame {
     			+ ""+affichagePanierFacture()+"\n\n"
     			+ "Votre commande               :  "+ihm.Acceuil.listPanier.getValPanier()+" €\n"
     			+ "Expédition Forfait France :  4.5 €\n"
-    			+ "Prix Total TTC                     :  "+(ihm.Panier.round((float) (ihm.Acceuil.listPanier.getValPanier()+4.5)))+" €\n";
+    			+ "Prix Total TTC                     :  "+ihm.Acceuil.listPanier.getValTotal()+" €\n";
     	}
         
 

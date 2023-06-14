@@ -117,9 +117,8 @@ public class Panier extends JFrame {
 				modeleTable.insertRow(i, data);	
 			}	
 		}
-		float total = round((float) (ihm.Acceuil.listPanier.getValPanier()+4.50));
 		textFieldST.setText(""+ihm.Acceuil.listPanier.getValPanier()+"€");
-		textFieldTotal.setText(""+(total)+"€");
+		textFieldTotal.setText(""+(ihm.Acceuil.listPanier.getValTotal())+"€");
 		
 	}
 	
