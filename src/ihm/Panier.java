@@ -72,8 +72,8 @@ public class Panier extends JFrame {
 	public static String stringToFloat(String str) {
 		String res = "";
 		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) == '.') {
-				res = res+",";
+			if (str.charAt(i) == ',') {
+				res = res+".";
 			} else {
 				res = res+str.charAt(i);
 			}
@@ -126,7 +126,7 @@ public class Panier extends JFrame {
 					modeleTable.insertRow(i, data);	
 					updateListPanier();
 				} else {
-					float val = (float) Float.parseFloat((String) modeleTable.getValueAt(i, 2)) * (float) modeleTable.getValueAt(i, 3);
+					float val = (float) Float.parseFloat(stringToFloat((String) modeleTable.getValueAt(i, 2))) * (float) modeleTable.getValueAt(i, 3);
 					ihm.Accueil.listPanier.addValPanier(val);
 					Object[] data = new Object[] {
 							modeleTable.getValueAt(i, 0),
