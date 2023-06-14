@@ -50,6 +50,9 @@ public class facture extends JFrame {
         });
     }
     
+    /*
+     * Cette fonction permet le remplissage dynamique du JTextField de la facture, elle formate le panier.
+     */
     public String affichagePanierFacture() {
     	String str = "";
     	for (int i = 0; i < ihm.Accueil.listPanier.taille(); i++) {
@@ -60,7 +63,9 @@ public class facture extends JFrame {
     	return str;
     }
 
-    
+    /*
+     * Cette fonction permet d'imprimer la facture
+     */
     public static void impression() {
         // Récupère un PrinterJob
         PrinterJob job = PrinterJob.getPrinterJob();

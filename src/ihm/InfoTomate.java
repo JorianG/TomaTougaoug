@@ -237,8 +237,6 @@ public class InfoTomate extends JFrame {
 		JLabel Quantité = new JLabel();
 		panel_4.add(Quantité);
 		
-
-		
 		if (tomate.isDisponible()) {
 			lblNewLabel_1.setText("En Stock");
 		} else {

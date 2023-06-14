@@ -72,16 +72,14 @@ public class Accueil extends JFrame {
 				}
 			}	
 		});
-		//main
-		
-		
-		
 	}
+	
+	/**
+	 * classe permettant de modifier le moteur de rendu des cellules des JTable pour mettre des images
+	 */
 	private class ImageRender extends DefaultTableCellRenderer {
 
-		/**
-		 * 
-		 */
+		
 		
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
@@ -92,8 +90,6 @@ public class Accueil extends JFrame {
 			lab.setText("");
 			//System.out.println(photoName);
 			lab.setIcon( new ImageIcon(Accueil.class.getResource(photoName)));
-				
-			
 			return lab;
 		}
 		
@@ -104,17 +100,11 @@ public class Accueil extends JFrame {
 	
 	/**
 	 * Fill the table on the landing pages according to the filters applied
-	 * @param couleur
-	 * @param type
+	 * 
 	 */
 	public void fillTable() {
 		emptyTable();
-		listAcc.clear();
-			//ImageIcon icon = new ImageIcon("/images/TomaTougaoug.png" );
-			//System.out.println("/images.Tomates40x40/"+ instBd.get(i).getNomImage()+".jpg");
-			//System.out.println(instBd.get(i).getCouleur().getDenomination());
-
-			
+		listAcc.clear();		
 		if (comboCat.getSelectedItem() == "tous" && comboCouleur.getSelectedItem() == "tous") {
 			for(int itt = 0; itt < instBd.size(); itt++) {
 				modeleTable.addRow(new Object[] {instBd.get(itt).getDésignation(),
@@ -275,7 +265,7 @@ public class Accueil extends JFrame {
 		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panier.add(txtPanier);
 		
-		eurPanier = new JLabel(listPanier.getValPanier()+"€"); //TODO
+		eurPanier = new JLabel(listPanier.getValPanier()+"€");
 		eurPanier.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panier.add(eurPanier);
 		

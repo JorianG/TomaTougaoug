@@ -63,6 +63,9 @@ public class Paiement extends JFrame {
 		});
 	}
 	
+	/*
+	 * teste si tous les champs obligatoire du formulaire sont remplis
+	 */
 	public static boolean testFullFill() {
 		for (JTextField tf: listField) {
 			if (tf.getText().isEmpty() && tf.getName() != "Adresse2") {
@@ -78,9 +81,6 @@ public class Paiement extends JFrame {
 				radioSelected, chckbxNewsletter.isSelected()));
 	}
 	
-	
-	//les ressortir, etc... bla bla bla je dors
-
 	/**
 	 * Create the frame.
 	 */

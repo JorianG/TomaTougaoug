@@ -55,11 +55,17 @@ public class Panier extends JFrame {
 		});
 	}
 	
-	
+	/*
+	 * arrondi les nombres à virgules au format .99
+	 */
 	public static float round(float val) {
 		return  (float) Math.round(val * 100) / 100; 
 	}
 	
+	/*
+	 * teste si la chaine passé en entré contient un floatant
+	 * @param str nombre à virgule sous forme de String
+	 */
 	public static boolean isFloatString(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == '.' || str.charAt(i) == ',') {
@@ -70,6 +76,9 @@ public class Panier extends JFrame {
 		return false;
 	}
 	
+	/*
+	 * Transforme les ',' d'une chaine de caractère en un '.'
+	 */
 	public static String stringToFloat(String str) {
 		String res = "";
 		for (int i = 0; i < str.length(); i++) {
@@ -82,6 +91,9 @@ public class Panier extends JFrame {
 		return res;
 	}
 	
+	/*
+	 * remplis la JTable du panier
+	 */
 	public static void fillTable() {
 		modeleTable.setRowCount(0);
 		for (EPanier t: ihm.Accueil.listPanier.getPanier()) {
@@ -90,6 +102,9 @@ public class Panier extends JFrame {
 	}
 	
 	
+	/**
+	 * classe permettant de modifier le moteur de rendu des cellules des JTable pour mettre des images
+	 */
 	private class ImageRender extends DefaultTableCellRenderer {
 
 		/**
@@ -109,6 +124,9 @@ public class Panier extends JFrame {
 		}	
 	}
 	
+	/*
+	 * cette fonction applique les recalcul des prix dans la table en cas de saisie manuelle ou d'ajout d'une tomate déjà existante dans le panier
+	 */
 	public static void recalcul() {
 		ihm.Accueil.listPanier.setValPanier(0F);
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
@@ -159,7 +177,9 @@ public class Panier extends JFrame {
 		
 	}
 	
-	
+	/*
+	 * modifie la liste du panier en cas de saisie manuelle
+	 */
 	public static void updateListPanier() { 
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
 			for (EPanier article: ihm.Accueil.listPanier.getPanier()) {
@@ -173,7 +193,10 @@ public class Panier extends JFrame {
 			}
 		}
 	}
-
+	
+	/*
+	 * vide le panier et la JTable
+	 */
 	public static void viderTable() {
 		ihm.Accueil.listPanier.supprimer(); 
 		modeleTable.setRowCount(0);
