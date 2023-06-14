@@ -59,9 +59,9 @@ public class facture extends JFrame {
     
     public String affichagePanierFacture() {
     	String str = "";
-    	for (int i = 0; i < ihm.Acceuil.listPanier.size(); i++) {
-    		Tomate tomate = ihm.Acceuil.listPanier.get(i).getTomate();
-    		int nb = ihm.Acceuil.listPanier.get(i).getNombre();
+    	for (int i = 0; i < ihm.Acceuil.listPanier.taille(); i++) {
+    		Tomate tomate = ihm.Acceuil.listPanier.getPanier().get(i).getTomate();
+    		int nb = ihm.Acceuil.listPanier.getPanier().get(i).getNombre();
     		str = str+""+(i+1)+""+" : "+tomate.getDésignation()+", quantité commandé : "+nb+" €, Prix TTC : "+tomate.getPrixTTC()+" €, Sous Total : "+ihm.Panier.round(tomate.getPrixTTC()*nb)+" €\n";
     	}
     	return str;

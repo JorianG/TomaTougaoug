@@ -2,8 +2,7 @@ package ihm;
 import modele.Tomates;
 import modele.EPanier;
 import modele.GenerationArticles;
-
-
+import modele.MPanier;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -49,7 +48,7 @@ public class Acceuil extends JFrame {
 	private JPanel contentPane;
 	private DefaultTableModel modeleTable;
 	protected static Tomates bdTomates = GenerationArticles.generationDeBaseDesTomates();
-	protected static List<EPanier> listPanier;
+	protected static MPanier listPanier; 
 	protected static JLabel eurPanier;
 	private JTable table;
 	public 	List<Tomate> instBd = bdTomates.getLesTomates();
@@ -170,7 +169,7 @@ public class Acceuil extends JFrame {
 	 */
 	public Acceuil() {
 	
-		this.listPanier = new LinkedList<EPanier>();
+		this.listPanier = new MPanier();
 	
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Acceuil.class.getResource("/images/TomaTougaoug.png")));
 		setTitle("TomaTougaoug");
@@ -258,7 +257,7 @@ public class Acceuil extends JFrame {
 		panier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (listPanier.size() != 0) {
+				if (listPanier.taille() != 0) { 
 					ihm.Panier.main();
 				} else {
 					ihm.PanierVide.main(null);

@@ -177,16 +177,16 @@ public class InfoTomate extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				boolean modif = false;
-				for (EPanier article: ihm.Acceuil.listPanier) {
+				for (EPanier article: ihm.Acceuil.listPanier.getPanier()) {
 					if (article.getTomate().getDésignation() == tomate.getDésignation()) {
-						article.addNombre((int) spinner.getValue());
-						ihm.Panier.calcValPanier(); 
+						ihm.Acceuil.listPanier.modifierAjoutExistant(tomate.getDésignation(), (int) spinner.getValue());
+						ihm.Panier.calcValPanier(); //TODO 
 						ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
 						modif = true;
 					}
 				}
 				if (!modif) {
-					ihm.Acceuil.listPanier.add(new EPanier(tomate, (int) spinner.getValue()));
+					ihm.Acceuil.listPanier.ajouter(tomate, (int) spinner.getValue());
 					ihm.Panier.calcValPanier(); 
 					ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
 				}
