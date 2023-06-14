@@ -56,6 +56,7 @@ public class MPanier {
 	}
 	
 	public float getValPanier() {
+		calcValPanier();
 		return round(this.valPanier);
 	}
 	
@@ -64,7 +65,13 @@ public class MPanier {
 		for (EPanier e: this.panier) {
 			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
 		}
-	 }
+	}
+	
+	public float getValTotal() {
+		calcValPanier();
+		return round((float) (getValPanier()+4.5));
+	}
+	
 	private float round(float val) {
 		return (float) Math.round(val * 100) / 100;
 	}
