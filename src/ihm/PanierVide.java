@@ -43,7 +43,7 @@ public class PanierVide extends JFrame {
 		setTitle("Panier vide");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PanierVide.class.getResource("/images/TomaTougaoug.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 250, 150);
+		setBounds(100, 100, 300, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
