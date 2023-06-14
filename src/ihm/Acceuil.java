@@ -257,7 +257,7 @@ public class Acceuil extends JFrame {
 		panier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (listPanier.taille() != 0) { 
+				if (listPanier.taille() != 0) {
 					ihm.Panier.main();
 				} else {
 					ihm.PanierVide.main(null);
@@ -274,7 +274,7 @@ public class Acceuil extends JFrame {
 		txtPanier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panier.add(txtPanier);
 		
-		eurPanier = new JLabel(ihm.Panier.valPanier+"€");
+		eurPanier = new JLabel(listPanier.getValPanier()+"€"); //TODO
 		eurPanier.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panier.add(eurPanier);
 		

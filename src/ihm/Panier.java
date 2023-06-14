@@ -29,7 +29,6 @@ import javax.swing.ScrollPaneConstants;
 
 public class Panier extends JFrame {
 	
-	protected static float valPanier = 0;
 	private JPanel contentPane;
 	private static DefaultTableModel modeleTable;
 	private static JTextField textFieldST;
@@ -66,12 +65,6 @@ public class Panier extends JFrame {
 		}
 	}
 	
-	public static void calcValPanier() { 
-		valPanier = 0F; // TODO
-		for (EPanier e: ihm.Acceuil.listPanier.getPanier()) {
-			valPanier += round(e.getNombre()*e.getTomate().getPrixTTC());
-		}
-	}
 	
 	private class ImageRender extends DefaultTableCellRenderer {
 
@@ -95,11 +88,11 @@ public class Panier extends JFrame {
 		
 	}
 	public static void recalcul() {
-		valPanier = 0;
+		ihm.Acceuil.listPanier.setValPanier(0F);
 		for (int i = 0; i < modeleTable.getRowCount(); i++) {
 			if (modeleTable.getValueAt(i, 2) instanceof String) {
 				float val = (float) Integer.parseInt((String) modeleTable.getValueAt(i, 2)) * (float) modeleTable.getValueAt(i, 3);
-				valPanier += val;
+				ihm.Acceuil.listPanier.addValPanier(val);
 				Object[] data = new Object[] {
 						modeleTable.getValueAt(i, 0),
 						modeleTable.getValueAt(i, 1),
@@ -112,7 +105,7 @@ public class Panier extends JFrame {
 				updateListPanier(); //TODO
 			} else {
 				float val = (float) modeleTable.getValueAt(i, 2) * (float) modeleTable.getValueAt(i, 3);
-				valPanier += val;
+				ihm.Acceuil.listPanier.addValPanier(val);
 				Object[] data = new Object[] {
 						modeleTable.getValueAt(i, 0),
 						modeleTable.getValueAt(i, 1),
@@ -124,9 +117,8 @@ public class Panier extends JFrame {
 				modeleTable.insertRow(i, data);	
 			}	
 		}
-		valPanier = round(valPanier);
-		float total = (float) (valPanier+4.50);
-		textFieldST.setText(""+valPanier+"€");
+		float total = round((float) (ihm.Acceuil.listPanier.getValPanier()+4.50));
+		textFieldST.setText(""+ihm.Acceuil.listPanier.getValPanier()+"€");
 		textFieldTotal.setText(""+(total)+"€");
 		
 	}

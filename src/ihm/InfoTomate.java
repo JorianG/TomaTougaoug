@@ -180,15 +180,15 @@ public class InfoTomate extends JFrame {
 				for (EPanier article: ihm.Acceuil.listPanier.getPanier()) {
 					if (article.getTomate().getDésignation() == tomate.getDésignation()) {
 						ihm.Acceuil.listPanier.modifierAjoutExistant(tomate.getDésignation(), (int) spinner.getValue());
-						ihm.Panier.calcValPanier(); //TODO 
-						ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
+						ihm.Acceuil.listPanier.calcValPanier();
+						ihm.Acceuil.eurPanier.setText(ihm.Acceuil.listPanier.getValPanier()+"€");
 						modif = true;
 					}
 				}
 				if (!modif) {
 					ihm.Acceuil.listPanier.ajouter(tomate, (int) spinner.getValue());
-					ihm.Panier.calcValPanier(); 
-					ihm.Acceuil.eurPanier.setText(ihm.Panier.valPanier+"€");
+					ihm.Acceuil.listPanier.calcValPanier();
+					ihm.Acceuil.eurPanier.setText(ihm.Acceuil.listPanier.getValPanier()+"€");
 				}
 				dispose();
 			}
